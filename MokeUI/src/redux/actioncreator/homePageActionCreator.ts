@@ -1,4 +1,4 @@
-import constants from '../constant';
+import constants from '../../constant';
 import { IHomePageState } from '../state/IHomePageState';
 import IHomePageAction from '../action/IHomePageAction';
 

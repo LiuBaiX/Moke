@@ -36,8 +36,8 @@ const mapDispatchToProps = () => {
 
 connect(mapStateToProps);
 
-export default class HomePage extends React.Component<IHomePageProps>{
-    constructor(props: IHomePageProps) {
+export default class MokeNav extends React.Component<IMokeNavProps>{
+    constructor(props: IMokeNavProps) {
         super(props);
         this.state = {
 
