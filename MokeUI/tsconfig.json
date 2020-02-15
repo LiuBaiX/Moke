@@ -17,7 +17,34 @@
     "resolveJsonModule": true,
     "noEmit": true,
     "jsx": "preserve",
-    "isolatedModules": true
+    "isolatedModules": false,
+    "baseUrl": ".",
+    "paths": {
+      "moke-constants": [
+        "src/data/constant/index"
+      ],
+      "moke-service": [
+        "src/api/service/index"
+      ],
+      "moke-components": [
+        "src/components/index"
+      ],
+      "moke-action": [
+        "src/data/action/index"
+      ],
+      "moke-enum": [
+        "src/data/enum/index"
+      ],
+      "moke-state": [
+        "src/data/state/index"
+      ],
+      "moke-action-creator": [
+        "src/redux/actioncreator/index"
+      ],
+      "moke-util": [
+        "src/util/index"
+      ],
+    }
   },
   "include": [
     "src"

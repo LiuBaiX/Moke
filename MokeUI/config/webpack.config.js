@@ -310,6 +310,14 @@ module.exports = function (webpackEnv) {
           'scheduler/tracing': 'scheduler/tracing-profiling',
         }),
         ...(modules.webpackAliases || {}),
+        'moke-constants': path.resolve('src/data/constant'),
+        "moke-service": path.resolve('src/api/service'),
+        "moke-components": path.resolve('src/components'),
+        "moke-action": path.resolve('src/data/action'),
+        "moke-enum": path.resolve('src/data/enum'),
+        "moke-state": path.resolve('src/data/state'),
+        "moke-action-creator": path.resolve('src/redux/actioncreator'),
+        "moke-util": path.resolve('src/util'),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

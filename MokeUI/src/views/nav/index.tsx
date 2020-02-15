@@ -1,28 +1,33 @@
 import React from 'react';
 import './index.scss';
-import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
-import reducer from '../../redux/reducer';
+import { connect } from 'react-redux';
 import {
     Col,
     Row,
-    Container,
     Button,
     InputGroup,
     FormControl,
     Nav,
-    ButtonGroup
+    ButtonGroup,
 } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { LoginModal } from './loginmodal';
 
-export interface IHomePageOwnProps {
+export interface IMokeNavOwnProps {
 
 }
-export interface IHomePageMapStateToProps {
+export interface IMokeNavMapStateToProps {
     test?: string
 }
-export interface IHomePageMapDispatchToProps {
+export interface IMokeNavMapDispatchToProps {
 
 }
-type IHomePageProps = IHomePageOwnProps & IHomePageMapStateToProps & IHomePageMapDispatchToProps;
+
+type IMokeNavProps = IMokeNavOwnProps & IMokeNavMapStateToProps & IMokeNavMapDispatchToProps;
+
+interface IMokeNavSate {
+    isOpenLoginModal: boolean;
+}
 
 const mapStateToProps = ({ testString }: any) => {
     return {
@@ -30,58 +35,68 @@ const mapStateToProps = ({ testString }: any) => {
     }
 }
 
-const mapDispatchToProps = () => {
-    return reducer
-}
 
 connect(mapStateToProps);
 
-export default class MokeNav extends React.Component<IMokeNavProps>{
+export class MokeNav extends React.Component<IMokeNavProps, IMokeNavSate>{
+
     constructor(props: IMokeNavProps) {
         super(props);
         this.state = {
-
+            isOpenLoginModal: false,
         }
     }
+
     public render(): JSX.Element {
         return (
-            <Container>
+            <React.Fragment>
                 <Row>
-                    <Col md={3}>
-                        <Row>
-                            <h1>墨客</h1>
-                            <Col className={"moke-homepage-nav-alignRight"}>
-                                <ButtonGroup>
-                                    <Button variant="outline-info">登录</Button>
-                                    <Button variant="outline-info">注册</Button>
-                                </ButtonGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <InputGroup>
-                                <FormControl
-                                    placeholder="Username"
-                                    aria-label="Username"
-                                />
-                                <InputGroup.Append>
-                                    <Button variant="outline-secondary">搜索</Button>
-                                </InputGroup.Append>
-                            </InputGroup>
-                        </Row>
-                        <Row>
-                            <Nav defaultActiveKey="/home" className="flex-column">
-                                <Nav.Link href="/home">文学宝库</Nav.Link>
-                                <Nav.Link eventKey="link-1">每日推荐</Nav.Link>
-                                <Nav.Link eventKey="link-2">典故大全</Nav.Link>
-                                <Nav.Link eventKey="link-2">个人中心</Nav.Link>
-                            </Nav>
-                        </Row>
+                    <Col>
+                        <Link
+                            to="/home"
+                            className="nav-link moke-homepage-nav-headerLink">
+                            <h2>墨客</h2>
+                        </Link>
                     </Col>
-                    <Col md={9}>
-
+                    <Col className="">
+                        <ButtonGroup className="float-right">
+                            <Button variant="outline-info"
+                                onClick={() => {
+                                    this.setState({ isOpenLoginModal: true });
+                                }}>登录</Button>
+                            <Button variant="outline-info">注册</Button>
+                        </ButtonGroup>
                     </Col>
                 </Row>
-            </Container>
+                <Row>
+                    <Col>
+                        <InputGroup>
+                            <FormControl
+                                placeholder="Username"
+                                aria-label="Username"
+                            />
+                            <InputGroup.Append>
+                                <Button variant="outline-secondary">搜索</Button>
+                            </InputGroup.Append>
+                        </InputGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Nav className="flex-column">
+                        <Link to="/article" className="nav-link">文学宝库</Link>
+                        <Link to="/daily" className="nav-link">每日推荐</Link>
+                        <Link to="/story" className="nav-link">典故大全</Link>
+                        <Link to="/center" className="nav-link">个人中心</Link>
+                        <Link to="/create" className="nav-link">开始创作</Link>
+                    </Nav>
+                </Row>
+                <LoginModal isOpen={this.state.isOpenLoginModal}
+                    onClose={() => {
+                        this.setState({
+                            isOpenLoginModal: false
+                        })
+                    }} />
+            </React.Fragment>
         )
     }
 }
