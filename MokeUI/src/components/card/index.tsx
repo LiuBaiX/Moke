@@ -65,10 +65,10 @@ export class MokeCard extends React.Component<IMokeCardProps>{
 
     private renderBody = () => {
         return this.props.onRenderBody
-            ? <Card.Body className={`text-muted text-center ${this.props.styles?.body?.root}`}>
+            ? <Card.Body className={this.props.styles?.body?.root}>
                 {this.props.onRenderBody()}
             </Card.Body>
-            : <Card.Body className={`text-muted text-center ${this.props.styles?.body?.root}`}>
+            : <Card.Body className={this.props.styles?.body?.root}>
                 {this.renderTitle()}
                 {this.renderContent()}
             </Card.Body>;

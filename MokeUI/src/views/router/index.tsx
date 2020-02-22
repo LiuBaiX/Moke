@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router";
 import HomePage from "src/views/pages/homepage";
 import Article from "src/views/pages/article";
-import Create from "src/views/pages/create";
+import { CreateNewArticle } from "src/views/pages/new_article";
 import Welcome from "../pages/welcome";
 import { connect } from "react-redux";
 import { IAppState } from "moke-state";
@@ -29,7 +29,7 @@ function renderRouter() {
 
             </Route>
             <Route path="/create" >
-                <Create></Create>
+                <CreateNewArticle />
             </Route>
         </React.Fragment>
     );
