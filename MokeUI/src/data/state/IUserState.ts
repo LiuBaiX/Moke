@@ -1,4 +1,4 @@
 export interface IUserState {
     username: string;
-    uid: string;
+    uid?: number;
 }

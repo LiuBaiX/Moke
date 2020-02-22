@@ -1,7 +1,5 @@
-import login from "./LoginActionCreator";
-import { showErrorActionCreator } from "./ShowErrorActionCreator";
+import UserActionCreator from "./UserActionCreator";
 
 export {
-    login,
-    showErrorActionCreator,
+    UserActionCreator
 }

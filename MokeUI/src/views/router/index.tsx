@@ -3,8 +3,11 @@ import { Route, Redirect } from "react-router";
 import HomePage from "src/views/pages/homepage";
 import Article from "src/views/pages/article";
 import Create from "src/views/pages/create";
+import Welcome from "../pages/welcome";
+import { connect } from "react-redux";
+import { IAppState } from "moke-state";
 
-export function MokeRouter() {
+function renderRouter() {
     return (
         <React.Fragment>
             <Route exact path="/" >
@@ -31,3 +34,32 @@ export function MokeRouter() {
         </React.Fragment>
     );
 }
+
+interface IMokeRouterMapStateToProps {
+    uid?: number;
+}
+
+type IMokeRouterProps = IMokeRouterMapStateToProps;
+
+function MokeRouterView(props: IMokeRouterProps) {
+    return (
+        <React.Fragment>
+            {
+                props.uid
+                    ? renderRouter()
+                    : <Welcome />
+            }
+        </React.Fragment>
+    );
+}
+
+const mapStateToProps = ({ user }: IAppState) => {
+    return {
+        uid: user.uid
+    }
+}
+
+const MokeRouter = connect(mapStateToProps)(MokeRouterView);
+
+export { MokeRouter };
+

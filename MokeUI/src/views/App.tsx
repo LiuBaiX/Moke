@@ -14,11 +14,19 @@ function App() {
       <BrowserRouter>
         <Container fluid>
           <Row>
-            <Col md={3} className="moke-app-nav fixed-top">
-              <MokeNav />
+            <Col md={3} className={"moke-app-nav fixed-top"}>
+              <aside>
+                <nav>
+                  <MokeNav />
+                </nav>
+              </aside>
             </Col>
-            <Col md={{ span: 9, offset: 3 }}>
-              <MokeRouter />
+            <Col md={{ span: 9, offset: 3 }} className={"moke-app-main"}>
+              <main>
+                <article>
+                  <MokeRouter />
+                </article>
+              </main>
             </Col>
           </Row>
         </Container>

@@ -5,6 +5,10 @@ export default class MokeAPI {
         return this.baseURL + "/user/login";
     }
 
+    public isLogin = () => {
+        return this.baseURL + "/user/isLogin";
+    }
+
     public register = () => {
         return this.baseURL + "/user/register";
     }

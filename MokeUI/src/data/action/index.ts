@@ -1,7 +1,7 @@
-import ILoginAction from './ILoginAction';
-import IShowErrorAction  from './IShowErrorAction';
+import { IUserAction } from './IUserAction';
+import { IErrorAction } from './IErrorAction';
 
 export {
-    ILoginAction,
-    IShowErrorAction
+    IUserAction,
+    IErrorAction
 }

@@ -1,13 +1,13 @@
-import { IErrorMessageState } from "./IErrorMessageState";
+import { IErrorState } from "./IErrorState";
 import { IUserState } from "./IUserState";
 
 interface IAppState {
-    errorMessage: IErrorMessageState;
+    error: IErrorState;
     user: IUserState;
 }
 
 export {
     IAppState,
-    IErrorMessageState,
+    IErrorState,
     IUserState,
 };
