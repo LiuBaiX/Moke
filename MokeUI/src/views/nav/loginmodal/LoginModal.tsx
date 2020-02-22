@@ -91,6 +91,8 @@ export class LoginModalView extends React.Component<ILoginModalViewProps, ILogin
             });
             this.props.login(username, password).then(() => {
                 this.props.onClose();
+            }).then(() => {
+                this.setState({ isLoading: false });
             });
         } else {
             alert("用户名或密码不能为空");
