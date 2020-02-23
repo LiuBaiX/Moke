@@ -17,8 +17,6 @@
     "babel-plugin-named-asset-import": "^0.3.4",
     "babel-preset-react-app": "^9.0.2",
     "bootstrap": "^4.4.1",
-    "braft-editor": "^2.3.8",
-    "braft-extensions": "^0.1.0",
     "camelcase": "^5.2.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "css-loader": "2.1.1",

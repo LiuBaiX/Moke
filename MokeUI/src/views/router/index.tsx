@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router";
 import HomePage from "src/views/pages/homepage";
 import Article from "src/views/pages/article";
-import { CreateNewArticle } from "src/views/pages/new_article";
+import { CreateNewArticle } from "src/views/pages/newarticle";
 import Welcome from "../pages/welcome";
 import { connect } from "react-redux";
 import { IAppState } from "moke-state";
