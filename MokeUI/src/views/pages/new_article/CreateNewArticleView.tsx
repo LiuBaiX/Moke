@@ -1,6 +1,7 @@
 import React from "react";
-import { Row, Col, Form, FormGroup } from "react-bootstrap";
-import { MokeCard, MokeFormLabel } from "moke-components";
+import { Col, Form, FormGroup } from "react-bootstrap";
+import { MokeCard, MokeFormLabel, MokeEditor } from "moke-components";
+
 
 interface ICreateNewArticleMapStateToProps {
 
@@ -22,7 +23,7 @@ export class CreateNewArticleView extends React.Component<ICreateNewArticleProps
     public render = () => {
         return (
             <React.Fragment>
-                <MokeCard headerText={"开始创作"} onRenderBody={this.renderCardBody} />
+                <MokeCard onRenderBody={this.renderCardBody} />
             </React.Fragment>
         )
     }
@@ -34,8 +35,22 @@ export class CreateNewArticleView extends React.Component<ICreateNewArticleProps
                     <Form.Row>
                         <FormGroup as={Col}>
                             <MokeFormLabel required={true} text={"作品名"} />
-                            <Form.Control placeholder={"请输入作品名"} />
+                            <Form.Row>
+                                <FormGroup as={Col}>
+                                    <Form.Control placeholder={"请输入作品名"} />
+                                </FormGroup>
+                                <FormGroup as={Col}>
+                                    <Form.Check
+                                        className="float-right"
+                                        inline
+                                        type="switch"
+                                        label="对他人隐藏"
+                                    />
+                                </FormGroup>
+                            </Form.Row>
                         </FormGroup>
+                    </Form.Row>
+                    <Form.Row>
                         <Form.Group as={Col}>
                             <MokeFormLabel required={true} text={"作品类型"} />
                             <Form.Control as="select">
@@ -52,7 +67,7 @@ export class CreateNewArticleView extends React.Component<ICreateNewArticleProps
                         </FormGroup>
                     </Form.Row>
                     <Form.Row>
-
+                        <MokeEditor />
                     </Form.Row>
                 </Form>
             </React.Fragment>
