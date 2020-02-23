@@ -59,6 +59,14 @@ export class CreateNewArticleView extends React.Component<ICreateNewArticleProps
                                 })}
                             </Form.Control>
                         </Form.Group>
+                        <Form.Group as={Col}>
+                            <MokeFormLabel required={true} text={"子类型"} />
+                            <Form.Control as="select">
+                                {[].map((item: any, index) => {
+                                    return <option key={index}>{item.type_name}</option>;
+                                })}
+                            </Form.Control>
+                        </Form.Group>
                     </Form.Row>
                     <Form.Row>
                         <FormGroup as={Col}>

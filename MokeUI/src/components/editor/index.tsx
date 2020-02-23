@@ -19,12 +19,19 @@ export class MokeEditor extends React.Component<IMokeEditorProps, IMokeEditorSta
     }
 
     public render() {
-        return <BraftEditor value={this.state.editorState} onChange={this.onChange} />;
+        return (
+            <React.Fragment>
+                <BraftEditor value={this.state.editorState} onChange={this.onChange} />;
+            </React.Fragment>
+        )
     }
 
     private onChange = (editorState: EditorState): void => {
         this.setState({
             editorState
         });
+        console.log(this.state.editorState.toHTML());
     }
+
+
 }
