@@ -18,7 +18,10 @@ const userReducer = (state: IUserState = defaultState, action: IUserAction): IUs
                 username: action.username || ""
             };
         case constants.COMMON_LOGOUT:
-            return defaultState
+            return {
+                uid: undefined,
+                username: ""
+            }
         default: return state;
     }
 }

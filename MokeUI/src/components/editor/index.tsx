@@ -1,22 +1,21 @@
-import React from "react";
+import { connect } from "react-redux";
+import { MokeArticleEditorView } from "./MokeArticleEditorView";
+import { ArticleSubTypeService } from "moke-service";
+import { mokeMapper } from "moke-mapper";
 
-export interface IMokeEditorProps {
-
-}
-
-export interface IMokeEditorState {
-}
-
-export class MokeEditor extends React.Component<IMokeEditorProps, IMokeEditorState> {
-    constructor(props: IMokeEditorProps) {
-        super(props);
+const mapDispatchToProps = () => {
+    return {
+        fetchArticleSubTypeList: (id: number) => {
+            return ArticleSubTypeService.getArticleSubType(id)
+                .then((data) => {
+                    return data.map((item) => {
+                        return mokeMapper.mapArticleSubTypeInfoToModel(item);
+                    })
+                })
+        }
     }
-
-    public render() {
-        return (
-            <React.Fragment>
-            </React.Fragment>
-        )
-    }
-
 }
+
+const MokeArticleEditor = connect(null, mapDispatchToProps)(MokeArticleEditorView);
+
+export { MokeArticleEditor };

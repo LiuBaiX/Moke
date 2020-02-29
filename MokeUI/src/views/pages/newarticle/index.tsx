@@ -1,16 +1,21 @@
-import { connect } from "react-redux";
+import { connect, } from "react-redux";
 import { CreateNewArticleView } from "./CreateNewArticleView";
 import { IAppState } from "moke-state";
+import { ArticleTypeActionCreator, ArticleActionCreator } from "moke-action-creator";
+import { bindActionCreators, Dispatch } from "redux";
 
-const mapStateToProps = ({  }: IAppState) => {
+const mapStateToProps = ({ articleTypes }: IAppState) => {
     return {
-        
+        articleTypeList: articleTypes.articleType
     };
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    fetchArticleTypeList: ArticleTypeActionCreator.fetchArticleTypeList,
+    onSave: ArticleActionCreator.addArticle,
+}
 
-const CreateNewArticle = connect()(CreateNewArticleView);
+const CreateNewArticle = connect(mapStateToProps, mapDispatchToProps)(CreateNewArticleView);
 
 export {
     CreateNewArticle

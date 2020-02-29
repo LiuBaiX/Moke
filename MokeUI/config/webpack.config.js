@@ -315,6 +315,8 @@ module.exports = function (webpackEnv) {
         "moke-components": path.resolve('src/components'),
         "moke-action": path.resolve('src/data/action'),
         "moke-enum": path.resolve('src/data/enum'),
+        "moke-model": path.resolve('src/data/model'),
+        "moke-mapper": path.resolve('src/data/mapper'),
         "moke-state": path.resolve('src/data/state'),
         "moke-action-creator": path.resolve('src/redux/actioncreator'),
         "moke-util": path.resolve('src/util'),

@@ -1,0 +1,11 @@
+.moke-article-editor-footer {
+    display: flex;
+    justify-content: space-between;
+    .moke-article-editor-spinner-container {
+        display: flex;
+        align-items: center;
+        .moke-article-editor-spinner-text{
+            margin-left: 6px;
+        }
+    }
+}

@@ -60,6 +60,7 @@ export class LoginModalView extends React.Component<ILoginModalViewProps, ILogin
                     }}
                     ref={this.inputRefPassword}
                     defaultValue={""}
+                    type="password"
                 />
             </React.Fragment>
         );

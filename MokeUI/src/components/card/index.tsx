@@ -28,10 +28,14 @@ interface IMokeCardBodyStyle {
 export class MokeCard extends React.Component<IMokeCardProps>{
 
     public render() {
+        const { children } = this.props;
         return (
             <Card className={this.props.styles?.root}>
                 {this.renderHeader()}
-                {this.renderBody()}
+                <Card.Body className={this.props.styles?.body?.root}>
+                    {this.renderBody()}
+                    {children}
+                </Card.Body>
                 {this.renderFooter()}
             </Card>
         );
@@ -65,13 +69,11 @@ export class MokeCard extends React.Component<IMokeCardProps>{
 
     private renderBody = () => {
         return this.props.onRenderBody
-            ? <Card.Body className={this.props.styles?.body?.root}>
-                {this.props.onRenderBody()}
-            </Card.Body>
-            : <Card.Body className={this.props.styles?.body?.root}>
+            ? this.props.onRenderBody()
+            : <React.Fragment>
                 {this.renderTitle()}
                 {this.renderContent()}
-            </Card.Body>;
+            </React.Fragment>
     }
 
     private renderTitle = () => {

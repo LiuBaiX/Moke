@@ -1,9 +1,12 @@
 import { combineReducers } from 'redux';
 import { userReducer } from './UserReducer';
 import { errorReducer } from './ErrorReducer';
+import { articleTypeReducer } from "./ArticleTypeReducer";
 
-
-export default combineReducers({
+const reducers = {
     user: userReducer,
-    error: errorReducer
-});
+    error: errorReducer,
+    articleTypes: articleTypeReducer,
+}
+
+export default combineReducers(reducers);

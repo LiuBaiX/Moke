@@ -35,6 +35,9 @@
       "moke-enum": [
         "src/data/enum/index"
       ],
+      "moke-model": [
+        "src/data/model/index"
+      ],
       "moke-state": [
         "src/data/state/index"
       ],
@@ -44,6 +47,9 @@
       "moke-util": [
         "src/util/index"
       ],
+      "moke-mapper": [
+        "src/data/mapper/index"
+      ]
     }
   },
   "include": [

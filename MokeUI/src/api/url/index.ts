@@ -13,8 +13,12 @@ export default class MokeAPI {
         return this.baseURL + "/user/register";
     }
 
-    public getType = () => {
-        return this.baseURL + "/type";
+    public getArticleType = () => {
+        return this.baseURL + "/article/type";
+    }
+
+    public getArticleSubType = (id: number) => {
+        return this.baseURL + `/article/subtype/${id}`;
     }
 
     public getArticle = () => {

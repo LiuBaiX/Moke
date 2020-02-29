@@ -1,0 +1,10 @@
+.moke-label-container{
+    .moke-label-spinner-container {
+        display: flex;
+        align-items: center;
+    
+        .moke-label-spinner-loading-text {
+            margin-left: 5px;
+        }
+    }
+}
