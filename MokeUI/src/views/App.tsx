@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Container fluid>
           <Row>
-            <Col md={3} className={"moke-app-nav fixed-top"}>
+            <Col md={3} sm={0} className={"moke-app-nav fixed-top"}>
               <aside>
                 <nav>
                   <MokeNav />

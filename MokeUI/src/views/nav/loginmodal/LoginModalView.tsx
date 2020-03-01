@@ -8,6 +8,10 @@ interface ILoginModalViewOwnProps {
     onClose: () => void;
 }
 
+interface ILoginModalViewMapStateToProps {
+    error?: string;
+}
+
 interface ILoginModalViewMapDispatchToProps {
     login: (username: string, password: string) => Promise<void>
 }
@@ -16,7 +20,9 @@ interface ILoginModalViewState {
     isLoading: boolean;
 }
 
-export type ILoginModalViewProps = ILoginModalViewOwnProps & ILoginModalViewMapDispatchToProps;
+export type ILoginModalViewProps = ILoginModalViewOwnProps
+    & ILoginModalViewMapStateToProps
+    & ILoginModalViewMapDispatchToProps;
 
 export class LoginModalView extends React.Component<ILoginModalViewProps, ILoginModalViewState>{
     private inputRefName: React.RefObject<any>;
@@ -91,7 +97,11 @@ export class LoginModalView extends React.Component<ILoginModalViewProps, ILogin
                 isLoading: true
             });
             this.props.login(username, password).then(() => {
-                this.props.onClose();
+                if (this.props.error) {
+                    alert(this.props.error);
+                } else {
+                    this.props.onClose();
+                }
             }).then(() => {
                 this.setState({ isLoading: false });
             });

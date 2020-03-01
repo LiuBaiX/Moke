@@ -9,12 +9,12 @@ function login(name: string, password: string): Promise<any> {
     return mokeSender.send(url, "POST", { name: name, password: password });
 }
 
-function isLogin(): Promise<any> {
-    const url = `${mokeAPI.isLogin()}`;
-    return mokeSender.send(url, "GET");
+function register(name: string, password: string): Promise<any> {
+    const url = mokeAPI.register();
+    return mokeSender.send(url, "POST" ,{ name, password });
 }
 
 export default {
     login,
-    isLogin
+    register
 }
