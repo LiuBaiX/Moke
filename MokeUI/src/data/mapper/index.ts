@@ -4,7 +4,11 @@ import {
     IArticleSubTypeInfo,
     IArticleSubType,
     IArticle,
-    IArticleForm
+    IArticleForm,
+    IArticleForDisplayInfo,
+    IArticleForDisplay,
+    ISubsidiary,
+    ISubsidiaryInfo
 } from "moke-model";
 import { ArticleIsPublic } from "moke-enum";
 
@@ -34,6 +38,35 @@ class MokeMapper {
             description: model.description || "",
             content: model.content || "",
             isPublic: model.isPublic ? ArticleIsPublic.Yes : ArticleIsPublic.No,
+        }
+    }
+
+    public mapDisplayArticleInfoToModel(info: IArticleForDisplayInfo): IArticleForDisplay {
+        return {
+            articleId: info.article_id,
+            name: info.title,
+            authorId: info.author.toString(),
+            authorDisplayName: info.name,
+            lastModifiedDate: info.last_modified_date,
+            createdDate: info.create_date,
+            description: info.description,
+            articleTypeDisplayName: info.type_name,
+            articleSubTypeDisplayName: info.display_name,
+            content: info.content,
+
+        }
+    }
+
+    public mapSubsidiaryInfoToModel(info: ISubsidiaryInfo): ISubsidiary {
+        return {
+            subsidiaryId: info.subsidiary_id.toString(),
+            title: info.title,
+            authorDisplayName: info.name,
+            authorId: info.author.toString(),
+            src: info.src,
+            content: info.content,
+            createDate: info.create_date,
+            type: info.type,
         }
     }
 }

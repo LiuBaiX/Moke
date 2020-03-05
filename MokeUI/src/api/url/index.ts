@@ -21,11 +21,23 @@ export default class MokeAPI {
         return this.baseURL + `/article/subtype/${id}`;
     }
 
-    public getArticle = () => {
-        return this.baseURL + "/article";
+    public getPublicArticles = () => {
+        return this.baseURL + "/article/public";
     }
 
     public addArticle = () => {
         return this.baseURL + "/article/add";
+    }
+
+    public getArticleById = () => {
+        return this.baseURL + "/article";
+    }
+
+    public getSubsidiariesByArticleId = (id: string) => {
+        return this.baseURL + `/subsidiary/${id}`;
+    }
+
+    public getMyArticles = (id: string) => {
+        return this.baseURL + `/article/mine/${id}`;
     }
 }

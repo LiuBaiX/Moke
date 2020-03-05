@@ -5,14 +5,18 @@ import {
     Button,
     InputGroup,
     FormControl,
-    Nav,
     ButtonGroup,
     ListGroup,
+    Breadcrumb,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LoginModal } from './loginmodal';
 import './index.scss';
 import { RegisterModal } from './registermodal';
+
+interface IMokeNavOwnProps {
+    history: any;
+}
 
 interface IMokeNavMapStateToProps {
     username: string;
@@ -23,7 +27,7 @@ interface IMokeNavMapDispatchToProps {
     logout: () => void;
 };
 
-type IMokeNavProps = IMokeNavMapStateToProps & IMokeNavMapDispatchToProps;
+type IMokeNavProps = IMokeNavOwnProps & IMokeNavMapStateToProps & IMokeNavMapDispatchToProps;
 
 interface IMokeNavSate {
     isOpenLoginModal: boolean;
@@ -42,7 +46,6 @@ type variant = undefined
     | 'light';
 
 export class MokeNavView extends React.Component<IMokeNavProps, IMokeNavSate>{
-
     constructor(props: IMokeNavProps) {
         super(props);
         this.state = {
@@ -87,41 +90,53 @@ export class MokeNavView extends React.Component<IMokeNavProps, IMokeNavSate>{
                     </Col>
                 </Row>
                 <Row>
+                    <Col>
+                        <Breadcrumb className={"moke-nav-breadcrumb"}>
+                            <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
+                            <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
+                                Library
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Item active>Data</Breadcrumb.Item>
+                        </Breadcrumb>
+                    </Col>
+                </Row>
+                <Row>
                     <ListGroup className="moke-nav-container">
                         <ListGroup.Item action
+                            className={"moke-nav-item text-primary"}
                             variant={this.state.isActive[0] as any}
                             onClick={() => {
                                 this.whichIsActive(0);
+                                this.props.history.push("/article");
                             }}>
-                            <Link to="/article" className="nav-link">文学宝库</Link>
+                            文学宝库
                         </ListGroup.Item>
                         <ListGroup.Item action
+                            className={"moke-nav-item text-primary"}
                             variant={this.state.isActive[1] as any}
                             onClick={() => {
                                 this.whichIsActive(1);
+                                this.props.history.push("/story");
                             }}>
-                            <Link to="/daily" className="nav-link">每日推荐</Link>
+                            典故大全
                         </ListGroup.Item>
                         <ListGroup.Item action
+                            className={"moke-nav-item text-primary"}
                             variant={this.state.isActive[2] as any}
                             onClick={() => {
                                 this.whichIsActive(2);
+                                this.props.history.push("/user");
                             }}>
-                            <Link to="/story" className="nav-link">典故大全</Link>
+                            个人中心
                         </ListGroup.Item>
                         <ListGroup.Item action
+                            className={"moke-nav-item text-primary"}
                             variant={this.state.isActive[3] as any}
                             onClick={() => {
                                 this.whichIsActive(3);
+                                this.props.history.push("/create");
                             }}>
-                            <Link to="/center" className="nav-link">个人中心</Link>
-                        </ListGroup.Item>
-                        <ListGroup.Item action
-                            variant={this.state.isActive[4] as any}
-                            onClick={() => {
-                                this.whichIsActive(4);
-                            }}>
-                            <Link to="/create" className="nav-link">开始创作</Link>
+                            创作中心
                         </ListGroup.Item>
                     </ListGroup>
                 </Row>

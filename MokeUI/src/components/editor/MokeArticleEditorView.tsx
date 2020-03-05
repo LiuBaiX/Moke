@@ -179,7 +179,7 @@ export class MokeArticleEditorView extends React.Component<IMokeArticleEditorPro
                                 defaultValue={this.props.dataSource?.articleSubType?.toString()}>
                                 {
                                     this.state.articleSubTypeList?.length === 0
-                                        ? <option>该分类下无子分类</option>
+                                        ? <option value={-1}>该分类下无子分类</option>
                                         : this.state.articleSubTypeList?.map((item: IArticleSubType, index) => {
                                             return <option
                                                 value={item.tid}

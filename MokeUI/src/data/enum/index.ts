@@ -4,11 +4,27 @@ enum RequestStatus {
 }
 
 enum ArticleIsPublic {
-    Yes = 0,
-    No = 1,
+    Yes = 1,
+    No = 0,
+}
+
+enum SubsidiaryType {
+    Drawing = 1,
+    Declaim = 2,
+    Music = 3,
+    Appreciation = 4,
+    Video = 5,
+}
+
+enum InvitationStatusType {
+    Sustaining = 0,
+    Accept = 1,
+    Reject = 2,
 }
 
 export {
     RequestStatus,
-    ArticleIsPublic
+    ArticleIsPublic,
+    SubsidiaryType,
+    InvitationStatusType,
 }

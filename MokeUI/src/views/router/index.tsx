@@ -1,36 +1,58 @@
 import React from "react";
-import { Route, Redirect } from "react-router";
+import { Route, Redirect, Switch } from "react-router";
 import HomePage from "src/views/pages/homepage";
-import Article from "src/views/pages/article";
-import { CreateNewArticle } from "src/views/pages/newarticle";
+import { Article } from "src/views/pages/article";
+import { CreateNewArticle } from "src/views/pages/createcenter/article";
 import Welcome from "../pages/welcome";
 import { connect } from "react-redux";
 import { IAppState } from "moke-state";
+import { ArticleDetails } from "src/views/pages/details";
+import { CreateCenter } from "../pages/createcenter";
 
 function renderRouter() {
+    const routeConfig = [
+        {
+            path: "/",
+            children: <Redirect to="/home" />,
+            exact: true,
+        },
+        {
+            path: "/home",
+            children: <HomePage />,
+        },
+        {
+            path: "/article",
+            children: <Article />
+        },
+        {
+            path: "/create",
+            children: <CreateCenter />,
+            exact: true,
+        },
+        {
+            path: "/create/article",
+            children: <CreateNewArticle />,
+        },
+        {
+            path: "/details/:id",
+            children: <ArticleDetails />,
+        },
+        {
+            path: "/user",
+            children: <React.Fragment></React.Fragment>
+        }
+    ];
     return (
         <React.Fragment>
-            <Route exact path="/" >
-                <Redirect to="/home" />
-            </Route>
-            <Route exact path="/home">
-                <HomePage />
-            </Route>
-            <Route path="/article" >
-                <Article />
-            </Route>
-            <Route path="/daily" >
-
-            </Route>
-            <Route path="/story" >
-
-            </Route>
-            <Route path="/center" >
-
-            </Route>
-            <Route path="/create" >
-                <CreateNewArticle />
-            </Route>
+            <Switch>
+                {
+                    routeConfig.map((route, index) => {
+                        return <Route key={index} path={route.path} exact={route.exact}>
+                            {route.children}
+                        </Route>
+                    })
+                }
+            </Switch>
         </React.Fragment>
     );
 }

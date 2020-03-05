@@ -1,5 +1,5 @@
 import React from "react";
-import { MokeArticleEditor, MokeCard } from "moke-components";
+import { MokeArticleEditor, MokeLoadingPage } from "moke-components";
 import { IArticleType, IArticle } from "moke-model";
 
 interface ICreateNewArticleMapStateToProps {
@@ -37,9 +37,7 @@ export class CreateNewArticleView extends React.Component<ICreateNewArticleProps
             <React.Fragment>
                 {
                     this.state.isLoading
-                        ? <MokeCard>
-                            Loading...
-                        </MokeCard>
+                        ? <MokeLoadingPage progress={this.state.isLoading ? undefined : 100} />
                         : <MokeArticleEditor
                             onSave={(article) => {
                                 return this.props.onSave(article);
