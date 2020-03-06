@@ -2,7 +2,6 @@ import React from "react";
 import { MokeCard, MokeCardAsType } from "../card";
 import { IArticleForDisplay } from "moke-model";
 import { useHistory } from "react-router";
-import { MokeTooltip } from "../tooltip";
 import { Badge } from "react-bootstrap";
 import { SimpleString } from "moke-util";
 

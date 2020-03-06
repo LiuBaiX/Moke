@@ -9,6 +9,7 @@ import { IArticleForDisplayInfo } from "./IArticleForDisplayInfo";
 import { ISubsidiary } from "./ISubsidiary";
 import { ISubsidiaryInfo } from "./ISubsidiaryInfo";
 import { IInvitation } from "./IInvitation";
+import { IInvitationInfo } from "./IInvitationInfo";
 
 export {
     IArticleForDisplay,
@@ -22,4 +23,5 @@ export {
     ISubsidiary,
     ISubsidiaryInfo,
     IInvitation,
+    IInvitationInfo,
 }

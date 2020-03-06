@@ -8,7 +8,9 @@ import {
     IArticleForDisplayInfo,
     IArticleForDisplay,
     ISubsidiary,
-    ISubsidiaryInfo
+    ISubsidiaryInfo,
+    IInvitationInfo,
+    IInvitation
 } from "moke-model";
 import { ArticleIsPublic } from "moke-enum";
 
@@ -53,7 +55,6 @@ class MokeMapper {
             articleTypeDisplayName: info.type_name,
             articleSubTypeDisplayName: info.display_name,
             content: info.content,
-
         }
     }
 
@@ -68,6 +69,22 @@ class MokeMapper {
             createDate: info.create_date,
             type: info.type,
         }
+    }
+
+    public mapInvitationInfoToModel(
+        username: string,
+        info: IInvitationInfo,
+        article: IArticleForDisplayInfo
+    ): IInvitation {
+        return {
+            invitationId: info.invitation_id.toString(),
+            author: article.name,
+            to: username,
+            article: { ...this.mapDisplayArticleInfoToModel(article) },
+            description: info.description,
+            date: info.create_date,
+            status: info.status
+        };
     }
 }
 

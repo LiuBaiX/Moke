@@ -40,4 +40,8 @@ export default class MokeAPI {
     public getMyArticles = (id: string) => {
         return this.baseURL + `/article/mine/${id}`;
     }
+
+    public getMyInvitations = (id: string) => {
+        return this.baseURL + `/invitation/${id}`;
+    }
 }

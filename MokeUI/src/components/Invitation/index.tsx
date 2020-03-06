@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Button, ButtonGroup } from "react-bootstrap";
+import { Table, Button, ButtonGroup, Row, Col } from "react-bootstrap";
 import { IInvitation } from "moke-model";
 import { Link } from "react-router-dom";
 import { MokeModal } from "../modal";
@@ -10,6 +10,8 @@ import { MokeNoDataTemplate } from "../template/ModeNoDataTemplate";
 
 export interface IMokeInvitationProps {
     dataSource: IInvitation[];
+    onAccept: (id: string) => void;
+    onReject: (id: string) => void;
 }
 
 interface IMokeInvitationState {
@@ -34,6 +36,7 @@ export class MokeInvitation extends React.Component<IMokeInvitationProps, IMokeI
                         <tr>
                             <th>#</th>
                             <th>作者</th>
+                            <th>作品</th>
                             <th>时间</th>
                             <th>操作</th>
                         </tr>
@@ -50,16 +53,20 @@ export class MokeInvitation extends React.Component<IMokeInvitationProps, IMokeI
                                 : dataSource.map((item, index) => {
                                     return (
                                         <tr>
-                                            <td>{index}</td>
+                                            <td>{index + 1}</td>
                                             <td>{item.author}</td>
                                             <td>
                                                 <Link to={`/details/${item.article.articleId}`}>
                                                     {item.article.name}
                                                 </Link>
                                             </td>
+                                            <td>{item.date}</td>
                                             <td>
                                                 <ButtonGroup>
-                                                    <Button variant="outline-success">同意</Button>
+                                                    <Button variant="outline-success"
+                                                        onClick={() => {
+                                                            this.props.onAccept(item.invitationId);
+                                                        }}>同意</Button>
                                                     <Button variant="outline-warning"
                                                         onClick={() => {
                                                             this.setState({
@@ -67,7 +74,10 @@ export class MokeInvitation extends React.Component<IMokeInvitationProps, IMokeI
                                                                 data: item
                                                             });
                                                         }}>详情</Button>
-                                                    <Button variant="outline-danger">拒绝</Button>
+                                                    <Button variant="outline-danger"
+                                                        onClick={() => {
+                                                            this.props.onReject(item.invitationId);
+                                                        }}>拒绝</Button>
                                                 </ButtonGroup>
                                             </td>
                                         </tr>
@@ -120,36 +130,43 @@ export class MokeInvitation extends React.Component<IMokeInvitationProps, IMokeI
         };
         return (
             <React.Fragment>
-                <Table>
-                    <tr>
-                        <th>作者</th>
-                        <td>{data?.author}</td>
-                    </tr>
-                    <tr>
-                        <th>时间</th>
-                        <td>{data?.date}</td>
-                    </tr>
-                    <tr>
-                        <th>消息</th>
-                        <td>{data?.description}</td>
-                    </tr>
-                    <tr>
-                        <th>状态</th>
-                        <td>{status}</td>
-                    </tr>
-                </Table>
-                <MokeArticleTemplate
-                    dataSource={data?.article || {
-                        articleId: 0,
-                        name: "未知",
-                        authorId: "未知",
-                        authorDisplayName: "未知",
-                        lastModifiedDate: "未知",
-                        createdDate: "未知",
-                        articleTypeDisplayName: "未知",
-                    }}
-                    as={MokeCardAsType.button}
-                    to={"/details"} />
+                <Row>
+                    <Col>
+                        <Table>
+                            <tr>
+                                <th>作者</th>
+                                <td>{data?.author}</td>
+                            </tr>
+                            <tr>
+                                <th>时间</th>
+                                <td>{data?.date}</td>
+                            </tr>
+                            <tr>
+                                <th>消息</th>
+                                <td>{data?.description}</td>
+                            </tr>
+                            <tr>
+                                <th>状态</th>
+                                <td>{status}</td>
+                            </tr>
+                        </Table>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <MokeArticleTemplate
+                            dataSource={data?.article || {
+                                articleId: 0,
+                                name: "未知",
+                                authorId: "未知",
+                                authorDisplayName: "未知",
+                                lastModifiedDate: "未知",
+                                createdDate: "未知",
+                                articleTypeDisplayName: "未知",
+                            }}
+                            as={MokeCardAsType.button}
+                            to={"/details"} /></Col>
+                </Row>
             </React.Fragment>
         );
     }

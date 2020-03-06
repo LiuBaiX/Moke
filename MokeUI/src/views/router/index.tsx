@@ -22,7 +22,8 @@ function renderRouter() {
         },
         {
             path: "/article",
-            children: <Article />
+            children: <Article />,
+            exact: true,
         },
         {
             path: "/create",
