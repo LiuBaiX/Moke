@@ -5,12 +5,16 @@ import { CreateCenterView } from "./CreateCenterView";
 
 const mapStateToProps = ({ invitations }: IAppState) => {
     return {
-        invitations: invitations.invitations,
+        receivedInvitations: invitations.receivedInvitations,
+        sendedInvitations: invitations.sendedInvitations,
     };
 }
 
 const mapDispatchToProps = {
-    fetchMyInvitations: InvitationActionCreator.fetchMyInvitation
+    fetchMyReceivedInvitations: InvitationActionCreator.fetchMyReceivedInvitations,
+    fetchMySendedInvitations: InvitationActionCreator.fetchMySendedInvitations,
+    updateMyReceivedInvitationStatus: InvitationActionCreator.updateMyReceivedInvitationStatus,
+    cancelMySendedInvitation: InvitationActionCreator.cancelMySendedInvitation,
 }
 
 const CreateCenter = connect(mapStateToProps, mapDispatchToProps)(CreateCenterView);

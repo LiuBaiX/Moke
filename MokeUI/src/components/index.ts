@@ -8,7 +8,10 @@ import { MokeArticleTemplate } from "./template";
 import { MokeLoadingPage } from "./loading";
 import { MokeArticleDetailsTemplate } from "./template/MokeArticleDetailsTemplate";
 import { MokeSubsidiaryDetailsTemplate } from "./template/MokeSubsidiaryDetailsTemplate";
-import { MokeInvitation } from "./Invitation";
+import {
+    MokeInvitationTemplateByReceiver,
+    MokeInvitationTemplateBySender,
+} from "./Invitation";
 
 export {
     MokeTooltip,
@@ -22,5 +25,6 @@ export {
     MokeLoadingPage,
     MokeArticleDetailsTemplate,
     MokeSubsidiaryDetailsTemplate,
-    MokeInvitation,
+    MokeInvitationTemplateByReceiver,
+    MokeInvitationTemplateBySender,
 }

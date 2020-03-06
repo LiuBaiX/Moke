@@ -4,7 +4,7 @@ import { Modal } from "react-bootstrap";
 export interface IMokeModalProps {
     title: string;
     content: React.ReactElement;
-    footer: React.ReactElement;
+    footer: React.ReactNode;
     isOpen: boolean;
     onClose: () => void;
 }

@@ -1,3 +1,5 @@
+import { InvitationStatusType } from "moke-enum";
+
 export default class MokeAPI {
     public baseURL = "http://localhost";
 
@@ -41,7 +43,19 @@ export default class MokeAPI {
         return this.baseURL + `/article/mine/${id}`;
     }
 
-    public getMyInvitations = (id: string) => {
-        return this.baseURL + `/invitation/${id}`;
+    public getMySendedInvitations = (id: string) => {
+        return this.baseURL + `/invitation/send/${id}`;
+    }
+
+    public getMyReceivedInvitations = (id: string) => {
+        return this.baseURL + `/invitation/receive/${id}`;
+    }
+
+    public updateMyReceivedInvitationStatus = (id: string, status: InvitationStatusType) => {
+        return this.baseURL + `/invitation/receive/${id}/status/${status}`;
+    }
+
+    public cancelMySendedInvitation = (id: string) => {
+        return this.baseURL + `/invitation/send/delete/${id}`;
     }
 }

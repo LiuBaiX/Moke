@@ -86,6 +86,21 @@ class MokeMapper {
             status: info.status
         };
     }
+
+    public mapSendedInvitationInfoToModel(
+        info: IInvitationInfo,
+        article: IArticleForDisplayInfo
+    ): IInvitation {
+        return {
+            invitationId: info.invitation_id.toString(),
+            author: article.name,
+            to: info.name || "",
+            article: { ...this.mapDisplayArticleInfoToModel(article) },
+            description: info.description,
+            date: info.create_date,
+            status: info.status
+        };
+    }
 }
 
 const mokeMapper = new MokeMapper();
