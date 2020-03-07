@@ -14,6 +14,14 @@ const addArticle = (dataSource: IArticle): ThunkAction<Promise<void>, IAppState,
     }
 }
 
+const editArticle =  (dataSource: IArticle): ThunkAction<Promise<void>, IAppState, null, any> => {
+    return (dispatch, getState) => {
+        const uid = getState().user.uid;
+        const articleForm = mokeMapper.mapArticleModelToArticleForm(dataSource, uid!);
+        return ArticleService.editArticle(articleForm);
+    }
+}
+
 const pushArticle = (articles: IArticleForDisplay[], page: number): IArticleAction => {
     return {
         type: constants.ARTICLE_LIST_PUSH,
@@ -59,6 +67,7 @@ const fetchMyArticles = (): ThunkAction<Promise<void>, IAppState, null, IArticle
 
 export default {
     addArticle,
+    editArticle,
     fetchArticles,
     fetchMyArticles,
 }

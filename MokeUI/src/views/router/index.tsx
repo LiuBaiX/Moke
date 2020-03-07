@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Redirect, Switch } from "react-router";
 import HomePage from "src/views/pages/homepage";
 import { Article } from "src/views/pages/article";
-import { CreateNewArticle } from "src/views/pages/createcenter/article";
+import { CreateNewArticle, EditArticle } from "src/views/pages/createcenter/article";
 import Welcome from "../pages/welcome";
 import { connect } from "react-redux";
 import { IAppState } from "moke-state";
@@ -31,8 +31,17 @@ function renderRouter() {
             exact: true,
         },
         {
-            path: "/create/article",
+            path: "/create/article/add",
             children: <CreateNewArticle />,
+            exact: true,
+        },
+        {
+            path: "/create/article/edit/:id",
+            children: <EditArticle />,
+        },
+        {
+            path: "/create/subsidiary/:id",
+            children: "123",
         },
         {
             path: "/details/:id",

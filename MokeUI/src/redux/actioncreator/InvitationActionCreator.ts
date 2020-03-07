@@ -41,7 +41,7 @@ const fetchMyReceivedInvitations = (): ThunkAction<Promise<void>, IAppState, nul
 
             const fetchArticlesPromiseArray = invitationsInfos.map((item) => {
                 return ArticleService
-                    .getArticleById(item.article_id)
+                    .getDisplayArticleById(item.article_id)
                     .then((article) => {
                         return mokeMapper.mapInvitationInfoToModel(username, item, article);
                     })
@@ -63,7 +63,7 @@ const fetchMySendedInvitations = (): ThunkAction<Promise<void>, IAppState, null,
 
             const fetchArticlesPromiseArray = invitationsInfos.map((item) => {
                 return ArticleService
-                    .getArticleById(item.article_id)
+                    .getDisplayArticleById(item.article_id)
                     .then((article) => {
                         return mokeMapper.mapSendedInvitationInfoToModel(item, article);
                     })

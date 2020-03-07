@@ -31,7 +31,7 @@ export class ArticleDetailsView extends React.Component<IArticleDetailsViewOwnPr
                     return mokeMapper.mapSubsidiaryInfoToModel(item);
                 });
             });
-        const fetchArticlePromise = ArticleService.getArticleById(parseInt(this.props.id || ""))
+        const fetchArticlePromise = ArticleService.getDisplayArticleById(parseInt(this.props.id || ""))
             .then((data) => {
                 return mokeMapper.mapDisplayArticleInfoToModel(data);
             });

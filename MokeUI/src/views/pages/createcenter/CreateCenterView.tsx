@@ -64,7 +64,7 @@ export const CreateCenterView: React.FunctionComponent<ICreateCenterViewProps> =
                                     className="float-right"
                                     variant="outline-success"
                                     onClick={() => {
-                                        history.push("/create/article");
+                                        history.push("/create/article/add");
                                     }}
                                 >创作文章</Button>
                             );

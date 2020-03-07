@@ -10,6 +10,7 @@ import { ISubsidiary } from "./ISubsidiary";
 import { ISubsidiaryInfo } from "./ISubsidiaryInfo";
 import { IInvitation } from "./IInvitation";
 import { IInvitationInfo } from "./IInvitationInfo";
+import { IArticleInfo } from "./IArticleInfo";
 
 export {
     IArticleForDisplay,
@@ -24,4 +25,5 @@ export {
     ISubsidiaryInfo,
     IInvitation,
     IInvitationInfo,
+    IArticleInfo,
 }

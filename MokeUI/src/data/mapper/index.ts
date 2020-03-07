@@ -10,7 +10,8 @@ import {
     ISubsidiary,
     ISubsidiaryInfo,
     IInvitationInfo,
-    IInvitation
+    IInvitation,
+    IArticleInfo
 } from "moke-model";
 import { ArticleIsPublic } from "moke-enum";
 
@@ -41,6 +42,18 @@ class MokeMapper {
             content: model.content || "",
             isPublic: model.isPublic ? ArticleIsPublic.Yes : ArticleIsPublic.No,
         }
+    }
+
+    public mapArticleInfoToModel(info: IArticleInfo): IArticle {
+        return {
+            articleId: info.article_id,
+            isPublic: info.isPublic === ArticleIsPublic.Yes,
+            name: info.title,
+            description: info.description,
+            articleType: info.type,
+            articleSubType: info.subType,
+            content: info.content,
+        };
     }
 
     public mapDisplayArticleInfoToModel(info: IArticleForDisplayInfo): IArticleForDisplay {

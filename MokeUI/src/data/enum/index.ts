@@ -20,6 +20,7 @@ enum InvitationStatusType {
     Sustaining = 0,
     Accept = 1,
     Reject = 2,
+    Finished = 3,
 }
 
 export {

@@ -126,8 +126,8 @@ export class MokeArticleEditorView extends React.Component<IMokeArticleEditorPro
                                         className="float-right"
                                         inline
                                         type="switch"
-                                        label="设为私有"
-                                        checked={this.props.dataSource?.isPublic}
+                                        label={"所有人可见"}
+                                        defaultChecked={this.props.dataSource?.isPublic}
                                         ref={this.isPublicFormChecked}
                                     />
                                 </FormGroup>
@@ -143,7 +143,7 @@ export class MokeArticleEditorView extends React.Component<IMokeArticleEditorPro
                             <Form.Control
                                 as="select"
                                 ref={this.typeFormSelect}
-                                value={this.props.dataSource?.articleType.toString()}
+                                defaultValue={this.props.dataSource?.articleType.toString()}
                                 onChange={() => {
                                     this.setState({
                                         isArticleSubTypeLoading: true
@@ -283,6 +283,7 @@ export class MokeArticleEditorView extends React.Component<IMokeArticleEditorPro
             isSaving: true,
         });
         const dataSource: IArticle = {
+            articleId: this.props.dataSource?.articleId,
             isPublic: this.isPublicFormChecked.current.checked,
             name: this.nameFormControl.current.value,
             description: this.descriptionFormControl.current.value,

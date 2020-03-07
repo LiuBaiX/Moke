@@ -2,6 +2,10 @@ import React from "react";
 import { MokeArticleEditor, MokeLoadingPage } from "moke-components";
 import { IArticleType, IArticle } from "moke-model";
 
+interface ICreateNewArticleViewOwnProps {
+    dataSource?: IArticle;
+}
+
 interface ICreateNewArticleMapStateToProps {
     articleTypeList: IArticleType[];
 }
@@ -9,7 +13,9 @@ interface ICreateNewArticleMapDispatchToProps {
     fetchArticleTypeList: () => Promise<void>;
     onSave: (dataSource: IArticle) => Promise<void>;
 }
-export type ICreateNewArticleProps = ICreateNewArticleMapDispatchToProps & ICreateNewArticleMapStateToProps;
+export type ICreateNewArticleProps = ICreateNewArticleViewOwnProps
+    & ICreateNewArticleMapDispatchToProps
+    & ICreateNewArticleMapStateToProps;
 
 interface ICreateNewArticleViewState {
     displaySmartTips: boolean;
@@ -39,6 +45,7 @@ export class CreateNewArticleView extends React.Component<ICreateNewArticleProps
                     this.state.isLoading
                         ? <MokeLoadingPage progress={this.state.isLoading ? undefined : 100} />
                         : <MokeArticleEditor
+                            dataSource={this.props.dataSource}
                             onSave={(article) => {
                                 return this.props.onSave(article);
                             }}

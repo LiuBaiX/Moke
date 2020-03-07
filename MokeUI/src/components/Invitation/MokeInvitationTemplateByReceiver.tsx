@@ -1,7 +1,7 @@
 import React from "react";
 import { Table, Button, ButtonGroup, Row, Col, Badge, Spinner } from "react-bootstrap";
 import { IInvitation } from "moke-model";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { MokeModal } from "../modal";
 import { MokeArticleTemplate } from "../template";
 import { MokeCardAsType } from "../card";
@@ -20,6 +20,17 @@ interface IMokeInvitationTemplateByReceiverState {
     isAcceptLoading: boolean;
     isRejectLoading: boolean;
     data?: IInvitation;
+}
+
+const CreateButton: React.FunctionComponent<{ articleId: string }> = (props) => {
+    const history = useHistory();
+
+    return (
+        <Button variant="outline-success"
+            onClick={() => {
+                history.push(`/create/subsidiary/${props.articleId}`);
+            }}>开始创作</Button>
+    );
 }
 
 export class MokeInvitationTemplateByReceiver extends React.Component<IMokeInvitationTemplateByReceiverProps, IMokeInvitationTemplateByReceiverState> {
@@ -71,13 +82,20 @@ export class MokeInvitationTemplateByReceiver extends React.Component<IMokeInvit
                                                     <ButtonGroup>
                                                         {
                                                             item.status !== InvitationStatusType.Sustaining
-                                                                ? <Button variant="outline-warning"
-                                                                    onClick={() => {
-                                                                        this.setState({
-                                                                            isOpen: true,
-                                                                            data: item
-                                                                        });
-                                                                    }}>详情</Button>
+                                                                ? <React.Fragment>
+                                                                    <Button variant="outline-warning"
+                                                                        onClick={() => {
+                                                                            this.setState({
+                                                                                isOpen: true,
+                                                                                data: item
+                                                                            });
+                                                                        }}>详情</Button>
+                                                                    {
+                                                                        item.status === InvitationStatusType.Accept
+                                                                            ? <CreateButton articleId={item.article.articleId.toString()} />
+                                                                            : null
+                                                                    }
+                                                                </React.Fragment>
                                                                 : <React.Fragment>
                                                                     <Button variant="outline-success"
                                                                         disabled={this.state.isAcceptLoading || this.state.isRejectLoading}
@@ -148,7 +166,9 @@ export class MokeInvitationTemplateByReceiver extends React.Component<IMokeInvit
             content={this.renderDetailsTable(data)}
             footer={
                 data?.status !== InvitationStatusType.Sustaining
-                    ? null
+                    ? data?.status === InvitationStatusType.Accept
+                        ? <CreateButton articleId={data.article.articleId.toString()} />
+                        : null
                     : this.renderModalFooter(data?.invitationId)
             }
             isOpen={this.state.isOpen}
@@ -217,6 +237,9 @@ export class MokeInvitationTemplateByReceiver extends React.Component<IMokeInvit
                 break;
             case InvitationStatusType.Sustaining:
                 status = <Badge className="moke-invitation-modal-badge-large" variant="warning">持续中</Badge>;
+                break;
+            case InvitationStatusType.Finished:
+                status = <Badge className="moke-invitation-modal-badge-large" variant="secondary">已完成</Badge>;
                 break;
             default:
                 status = <span className="text-muted">未知</span>;

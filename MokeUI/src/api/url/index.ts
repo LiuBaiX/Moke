@@ -31,8 +31,16 @@ export default class MokeAPI {
         return this.baseURL + "/article/add";
     }
 
+    public editArticle = () => {
+        return this.baseURL + "/article/edit";
+    }
+
     public getArticleById = () => {
-        return this.baseURL + "/article";
+        return this.baseURL + "/article/not/display";
+    }
+
+    public getDisplayArticleById = ()=>{
+        return this.baseURL +"/article"
     }
 
     public getSubsidiariesByArticleId = (id: string) => {

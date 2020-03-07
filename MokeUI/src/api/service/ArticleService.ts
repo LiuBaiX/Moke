@@ -1,12 +1,17 @@
 import { MokeSender } from 'moke-util';
 import MokeAPI from '../url';
-import { IArticleForm, IArticleForDisplayInfo } from 'moke-model';
+import { IArticleForm, IArticleForDisplayInfo, IArticleInfo } from 'moke-model';
 
 const mokeSender = new MokeSender();
 const mokeAPI = new MokeAPI();
 
 const addArticle = (articleForm: IArticleForm): Promise<void> => {
     const url = mokeAPI.addArticle();
+    return mokeSender.send(url, "POST", articleForm);
+}
+
+const editArticle = (articleForm: IArticleForm): Promise<void> => {
+    const url = `${mokeAPI.editArticle()}/${articleForm.articleId}`;
     return mokeSender.send(url, "POST", articleForm);
 }
 
@@ -17,7 +22,12 @@ const getPublicArticles = (page: number): Promise<IArticleForDisplayInfo[]> => {
     });
 }
 
-const getArticleById = (id: number): Promise<IArticleForDisplayInfo> => {
+const getDisplayArticleById = (id: number): Promise<IArticleForDisplayInfo> => {
+    const url = `${mokeAPI.getDisplayArticleById()}/${id}`;
+    return mokeSender.send(url, "GET");
+}
+
+const getArticleById = (id: number): Promise<IArticleInfo> => {
     const url = `${mokeAPI.getArticleById()}/${id}`;
     return mokeSender.send(url, "GET");
 }
@@ -34,4 +44,6 @@ export default {
     getPublicArticles,
     getArticleById,
     getMyArticles,
+    editArticle,
+    getDisplayArticleById,
 }
