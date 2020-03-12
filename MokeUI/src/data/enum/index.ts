@@ -23,9 +23,17 @@ enum InvitationStatusType {
     Finished = 3,
 }
 
+enum UserStatusType {
+    Normal = 0,
+    Baned = 1,
+    Confined = 2,
+    Monitored = 3,
+}
+
 export {
     RequestStatus,
     ArticleIsPublic,
     SubsidiaryType,
     InvitationStatusType,
+    UserStatusType
 }

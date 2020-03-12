@@ -1,6 +1,6 @@
 import React from "react";
 import { MokeCard } from "../card";
-import { Tab, Col, Nav, Row } from "react-bootstrap";
+import { Tab, Col, Nav, Row, Button, Form } from "react-bootstrap";
 import { MokeAppreciationTemplate } from "./MokeAppreciationTemplate";
 import { MokeAudioTemplate } from "./MokeAudioTemplate";
 import { MokeImageTemplate } from "./MokeImageTemplate";
@@ -9,16 +9,47 @@ import { MokeBasicList } from "../list";
 import { ISubsidiary } from "moke-model";
 import { SubsidiaryType } from "moke-enum";
 import { MokeNoDataTemplate } from "./ModeNoDataTemplate";
+import { MokeModal } from "moke-components";
 
 export interface IMokeSubsidiaryDetailsTemplateProps {
     dataSource: ISubsidiary[];
+    isDisplayInviteButton: boolean;
 }
 
-export class MokeSubsidiaryDetailsTemplate extends React.Component<IMokeSubsidiaryDetailsTemplateProps> {
+interface IMokeSubsidiaryDetailsTemplateState {
+    isOpen: boolean;
+}
+
+export class MokeSubsidiaryDetailsTemplate extends React.Component<IMokeSubsidiaryDetailsTemplateProps, IMokeSubsidiaryDetailsTemplateState> {
+    constructor(props: IMokeSubsidiaryDetailsTemplateProps) {
+        super(props);
+        this.state = {
+            isOpen: false,
+        };
+    }
+
     public render() {
         return (
             <React.Fragment>
-                <MokeCard headerText="衍生作品" >
+                <MokeCard headerText="衍生作品"
+                    onRenderHeader={
+                        this.props.isDisplayInviteButton
+                            ? () => {
+                                return (
+                                    <Button
+                                        className="float-right"
+                                        variant="outline-success"
+                                        onClick={() => {
+                                            this.setState({
+                                                isOpen: true
+                                            });
+                                        }}
+                                    >邀请</Button>
+                                );
+                            }
+                            : undefined
+                    }
+                >
                     <Tab.Container id="left-tabs-example" defaultActiveKey="drawing">
                         <Row>
                             <Col sm={2}>
@@ -46,6 +77,51 @@ export class MokeSubsidiaryDetailsTemplate extends React.Component<IMokeSubsidia
                         </Row>
                     </Tab.Container>
                 </MokeCard>
+                <MokeModal
+                    title={"邀请合著者"}
+                    footer={this.renderModalFooter()}
+                    content={this.renderModalContent()}
+                    isOpen={this.state.isOpen}
+                    onClose={() => {
+                        this.setState({
+                            isOpen: false
+                        });
+                    }}
+                />
+            </React.Fragment>
+        );
+    }
+
+    private renderModalFooter = () => {
+        return <Button
+            variant="outline-success"
+            onClick={() => {
+
+            }}>发送</Button>;
+    }
+
+    private renderModalContent = () => {
+        return (
+            <React.Fragment>
+                <Form>
+                    <Form.Group as={Row} controlId="formPlaintextEmail">
+                        <Form.Label column sm="2">
+                            收件人
+                        </Form.Label>
+                        <Col sm="10">
+                            <Form.Control />
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="2">
+                            描述
+                        </Form.Label>
+                        <Col sm="10">
+                            <Form.Control as="textarea" />
+                        </Col>
+                    </Form.Group>
+                </Form>
             </React.Fragment>
         );
     }

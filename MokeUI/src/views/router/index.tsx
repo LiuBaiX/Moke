@@ -41,7 +41,7 @@ function renderRouter() {
         },
         {
             path: "/create/subsidiary/:id",
-            children: "123",
+            children: "Create Subsidiary",
         },
         {
             path: "/details/:id",

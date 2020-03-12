@@ -5,6 +5,7 @@ export interface ISubsidiary {
     title: string;
     authorDisplayName: string;
     authorId: string;
+    articleId: string;
     src?: string;
     content?: string;
     createDate: string;

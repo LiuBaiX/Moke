@@ -1,12 +1,12 @@
 import constants from "moke-constants";
-import { IArticle, IArticleForDisplay } from "moke-model";
+import { IArticle, IArticleForDisplay, IUpdateArticleReturnsInfo } from "moke-model";
 import { IArticleAction } from "moke-action";
 import { ThunkAction } from "redux-thunk";
 import { IAppState } from "moke-state";
 import { ArticleService } from "moke-service";
 import { mokeMapper } from "moke-mapper";
 
-const addArticle = (dataSource: IArticle): ThunkAction<Promise<void>, IAppState, null, any> => {
+const addArticle = (dataSource: IArticle): ThunkAction<Promise<IUpdateArticleReturnsInfo>, IAppState, null, any> => {
     return (dispatch, getState) => {
         const uid = getState().user.uid;
         const articleForm = mokeMapper.mapArticleModelToArticleForm(dataSource, uid!);
@@ -14,7 +14,7 @@ const addArticle = (dataSource: IArticle): ThunkAction<Promise<void>, IAppState,
     }
 }
 
-const editArticle =  (dataSource: IArticle): ThunkAction<Promise<void>, IAppState, null, any> => {
+const editArticle = (dataSource: IArticle): ThunkAction<Promise<IUpdateArticleReturnsInfo>, IAppState, null, any> => {
     return (dispatch, getState) => {
         const uid = getState().user.uid;
         const articleForm = mokeMapper.mapArticleModelToArticleForm(dataSource, uid!);

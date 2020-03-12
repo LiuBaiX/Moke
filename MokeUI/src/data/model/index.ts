@@ -11,6 +11,9 @@ import { ISubsidiaryInfo } from "./ISubsidiaryInfo";
 import { IInvitation } from "./IInvitation";
 import { IInvitationInfo } from "./IInvitationInfo";
 import { IArticleInfo } from "./IArticleInfo";
+import { IUpdateArticleReturnsInfo } from "./IUpdateArticleReturnsInfo";
+import { IUser } from "./IUser";
+import { IUserInfo } from "./IUserInfo";
 
 export {
     IArticleForDisplay,
@@ -26,4 +29,7 @@ export {
     IInvitation,
     IInvitationInfo,
     IArticleInfo,
+    IUpdateArticleReturnsInfo,
+    IUser,
+    IUserInfo,
 }

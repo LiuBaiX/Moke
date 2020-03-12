@@ -5,9 +5,12 @@ import { IArticleForDisplay, ISubsidiary } from "moke-model";
 import { MokeLoadingPage, MokeArticleDetailsTemplate, MokeSubsidiaryDetailsTemplate } from "moke-components";
 import { Row, Col } from "react-bootstrap";
 import "./index.scss";
+import { IAppState } from "moke-state";
+import { connect } from "react-redux";
 
 interface IArticleDetailsViewOwnProps {
-    id: string
+    id: string;
+    uid?: number;
 }
 
 interface IArticleDetailsViewState {
@@ -16,7 +19,7 @@ interface IArticleDetailsViewState {
     subsidiaryDataSource?: ISubsidiary[];
 }
 
-export class ArticleDetailsView extends React.Component<IArticleDetailsViewOwnProps, IArticleDetailsViewState> {
+class MiddleComponent extends React.Component<IArticleDetailsViewOwnProps, IArticleDetailsViewState> {
     constructor(props: IArticleDetailsViewOwnProps) {
         super(props);
         this.state = {
@@ -60,7 +63,12 @@ export class ArticleDetailsView extends React.Component<IArticleDetailsViewOwnPr
                             </Row>
                             <Row>
                                 <Col>
-                                    <MokeSubsidiaryDetailsTemplate dataSource={this.state.subsidiaryDataSource!} />
+                                    <MokeSubsidiaryDetailsTemplate
+                                        isDisplayInviteButton={
+                                            this.props.uid?.toString() === this.state.articleDataSource?.authorId
+                                        }
+                                        dataSource={this.state.subsidiaryDataSource!}
+                                    />
                                 </Col>
                             </Row>
                         </React.Fragment>
@@ -68,4 +76,16 @@ export class ArticleDetailsView extends React.Component<IArticleDetailsViewOwnPr
             </React.Fragment>
         );
     }
+}
+
+const mapStateToProps = ({ user }: IAppState) => {
+    return {
+        uid: user.uid
+    };
+}
+
+const ArticleDetailsView = connect(mapStateToProps)(MiddleComponent);
+
+export {
+    ArticleDetailsView
 }

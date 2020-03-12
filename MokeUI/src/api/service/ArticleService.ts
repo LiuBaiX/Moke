@@ -1,16 +1,16 @@
 import { MokeSender } from 'moke-util';
 import MokeAPI from '../url';
-import { IArticleForm, IArticleForDisplayInfo, IArticleInfo } from 'moke-model';
+import { IArticleForm, IArticleForDisplayInfo, IArticleInfo, IUpdateArticleReturnsInfo } from 'moke-model';
 
 const mokeSender = new MokeSender();
 const mokeAPI = new MokeAPI();
 
-const addArticle = (articleForm: IArticleForm): Promise<void> => {
+const addArticle = (articleForm: IArticleForm): Promise<IUpdateArticleReturnsInfo> => {
     const url = mokeAPI.addArticle();
     return mokeSender.send(url, "POST", articleForm);
 }
 
-const editArticle = (articleForm: IArticleForm): Promise<void> => {
+const editArticle = (articleForm: IArticleForm): Promise<IUpdateArticleReturnsInfo> => {
     const url = `${mokeAPI.editArticle()}/${articleForm.articleId}`;
     return mokeSender.send(url, "POST", articleForm);
 }

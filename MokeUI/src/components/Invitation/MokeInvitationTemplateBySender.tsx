@@ -142,7 +142,8 @@ export class MokeInvitationTemplateBySender extends React.Component<IMokeInvitat
                             .onCancel(id || "-1")
                             .then(() => {
                                 this.setState({
-                                    isLoading: false
+                                    isLoading: false,
+                                    isOpen: false,
                                 });
                             });
                     }}>

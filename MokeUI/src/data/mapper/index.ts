@@ -81,6 +81,7 @@ class MokeMapper {
             content: info.content,
             createDate: info.create_date,
             type: info.type,
+            articleId: info.article_id.toString(),
         }
     }
 

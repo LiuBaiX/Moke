@@ -192,7 +192,8 @@ export class MokeInvitationTemplateByReceiver extends React.Component<IMokeInvit
                             .onAccept(id || "-1")
                             .then(() => {
                                 this.setState({
-                                    isAcceptLoading: false
+                                    isAcceptLoading: false,
+                                    isOpen: false,
                                 });
                             });
                     }}>
@@ -212,7 +213,8 @@ export class MokeInvitationTemplateByReceiver extends React.Component<IMokeInvit
                             .onReject(id || "-1")
                             .then(() => {
                                 this.setState({
-                                    isRejectLoading: false
+                                    isRejectLoading: false,
+                                    isOpen: false,
                                 });
                             });
                     }}>

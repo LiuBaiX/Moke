@@ -12,11 +12,12 @@ import {
     MokeFormLabel
 } from "moke-components";
 import "./index.scss";
-import { IArticleType, IArticleSubType, IArticle } from "moke-model";
+import { IArticleType, IArticleSubType, IArticle, IUpdateArticleReturnsInfo } from "moke-model";
+import { useHistory } from "react-router";
 
 interface IMokeArticleEditorViewOwnProps {
     dataSource?: IArticle;
-    onSave: (article: IArticle) => Promise<void>;
+    onSave: (article: IArticle) => Promise<IUpdateArticleReturnsInfo>;
     articleTypeList: IArticleType[];
 };
 
@@ -39,6 +40,28 @@ interface IMokeArticleEditorViewError {
 export type IMokeArticleEditorProps =
     IMokeArticleEditorViewOwnProps
     & IMokeArticleEditorViewMapDispatchToProps;
+
+interface ISubmitButtonProps {
+    onSave: () => Promise<IUpdateArticleReturnsInfo>;
+    onValidate: () => boolean;
+}
+const SubmitButton: React.FunctionComponent<ISubmitButtonProps> = (props) => {
+    const history = useHistory();
+    return (
+        <Button
+            variant="outline-success"
+            onClick={() => {
+                if (!props.onValidate()) {
+                    return;
+                }
+                props.onSave().then((data) => {
+                    history.push(`/details/${data.aid}`);
+                });
+            }}>
+            发布
+      </Button>
+    );
+}
 
 export class MokeArticleEditorView extends React.Component<IMokeArticleEditorProps, IMokeArticleEditorViewState> {
     private nameFormControl: React.RefObject<any>;
@@ -221,7 +244,7 @@ export class MokeArticleEditorView extends React.Component<IMokeArticleEditorPro
                                     <Form.Control
                                         as={"textarea"}
                                         rows={9}
-                                        value={this.props.dataSource?.content}
+                                        defaultValue={this.props.dataSource?.content}
                                         ref={this.contentFormControl}
                                     />
                                 </Form.Group>
@@ -239,13 +262,7 @@ export class MokeArticleEditorView extends React.Component<IMokeArticleEditorPro
                         {this.state.isSaving ? this.renderSpinnerOnSubmit() : null}
                     </div>
                     <ButtonGroup>
-                        <Button
-                            variant="outline-success"
-                            onClick={() => {
-                                this.onSave();
-                            }}>
-                            发布
-                        </Button>
+                        <SubmitButton onSave={this.onSave} onValidate={this.validateData} />
                     </ButtonGroup>
                 </div>
             </React.Fragment>
@@ -275,10 +292,7 @@ export class MokeArticleEditorView extends React.Component<IMokeArticleEditorPro
         return !!name;
     }
 
-    private onSave = (): void => {
-        if (!this.validateData()) {
-            return;
-        }
+    private onSave = (): Promise<IUpdateArticleReturnsInfo> => {
         this.setState({
             isSaving: true,
         });
@@ -292,10 +306,11 @@ export class MokeArticleEditorView extends React.Component<IMokeArticleEditorPro
             content: this.contentFormControl.current.value,
         }
         console.log(dataSource);
-        this.props.onSave(dataSource).then(() => {
+        return this.props.onSave(dataSource).then((data) => {
             this.setState({
                 isSaving: false,
             });
+            return data;
         });
     }
 

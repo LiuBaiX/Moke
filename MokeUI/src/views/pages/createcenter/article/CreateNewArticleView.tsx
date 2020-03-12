@@ -1,6 +1,6 @@
 import React from "react";
 import { MokeArticleEditor, MokeLoadingPage } from "moke-components";
-import { IArticleType, IArticle } from "moke-model";
+import { IArticleType, IArticle, IUpdateArticleReturnsInfo } from "moke-model";
 
 interface ICreateNewArticleViewOwnProps {
     dataSource?: IArticle;
@@ -11,7 +11,7 @@ interface ICreateNewArticleMapStateToProps {
 }
 interface ICreateNewArticleMapDispatchToProps {
     fetchArticleTypeList: () => Promise<void>;
-    onSave: (dataSource: IArticle) => Promise<void>;
+    onSave: (dataSource: IArticle) => Promise<IUpdateArticleReturnsInfo>;
 }
 export type ICreateNewArticleProps = ICreateNewArticleViewOwnProps
     & ICreateNewArticleMapDispatchToProps
