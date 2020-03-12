@@ -14,6 +14,8 @@ import { IArticleInfo } from "./IArticleInfo";
 import { IUpdateArticleReturnsInfo } from "./IUpdateArticleReturnsInfo";
 import { IUser } from "./IUser";
 import { IUserInfo } from "./IUserInfo";
+import { IInvitationRequest } from "./IInvitationRequest";
+import { IInvitationResponse } from "./IInvitationResponse";
 
 export {
     IArticleForDisplay,
@@ -32,4 +34,6 @@ export {
     IUpdateArticleReturnsInfo,
     IUser,
     IUserInfo,
+    IInvitationRequest,
+    IInvitationResponse,
 }

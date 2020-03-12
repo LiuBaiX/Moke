@@ -12,6 +12,7 @@ import {
     MokeInvitationTemplateByReceiver,
     MokeInvitationTemplateBySender,
 } from "./Invitation";
+import { MokePeoplePicker } from "./peoplepicker";
 
 export {
     MokeTooltip,
@@ -27,4 +28,5 @@ export {
     MokeSubsidiaryDetailsTemplate,
     MokeInvitationTemplateByReceiver,
     MokeInvitationTemplateBySender,
+    MokePeoplePicker,
 }

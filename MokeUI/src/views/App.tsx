@@ -6,7 +6,10 @@ import store from '../redux';
 import { Container, Row, Col } from 'react-bootstrap';
 import { MokeNav } from './nav';
 import { MokeRouter } from './router';
+import { initializeIcons } from '@uifabric/icons';
 import './App.scss';
+
+initializeIcons();
 
 function App() {
   return (

@@ -9,6 +9,8 @@ import { loginErrorActionCreator, registerErrorActionCreator } from "./ErrorActi
 import { ThunkAction } from "redux-thunk";
 import { IAppState } from "moke-state";
 import { SimpleSession } from "moke-util";
+import { IUser } from "moke-model";
+import { mokeMapper } from "moke-mapper";
 
 const loginActionCreator = (username: string, uid: number): IUserAction => {
     return {
@@ -69,8 +71,17 @@ const register = (username: string, password: string): ThunkAction<Promise<void>
     }
 }
 
+const fetchUserDataByFuzzyName = (fuzzyName: string): Promise<IUser[]> => {
+    return UserService.getUserByFuzzyName(fuzzyName).then((data) => {
+        return data.map((item) => {
+            return mokeMapper.mapUserInfoToModel(item);
+        });
+    });
+}
+
 export default {
     login,
     logout,
     register,
+    fetchUserDataByFuzzyName,
 }

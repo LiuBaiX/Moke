@@ -1,6 +1,6 @@
 import { MokeSender } from 'moke-util';
 import MokeAPI from '../url';
-import { IInvitationInfo } from "moke-model";
+import { IInvitationInfo, IInvitationRequest, IInvitationResponse } from "moke-model";
 import { InvitationStatusType } from 'moke-enum';
 
 const mokeSender = new MokeSender();
@@ -29,9 +29,21 @@ const cancelMySendedInvitation = (id: string): Promise<void> => {
     return mokeSender.send(url, "GET");
 }
 
+const sendInvitation = (data: IInvitationRequest): Promise<IInvitationResponse> => {
+    const {
+        from,
+        to,
+        description,
+        ref
+    } = data;
+    const url = mokeAPI.sendInvitation(from, ref);
+    return mokeSender.send(url, "POST", { description, to });
+}
+
 export default {
     getMyReceivedInvitations,
     getMySendedInvitations,
     updateMyReceivedInvitationStatus,
     cancelMySendedInvitation,
+    sendInvitation,
 }

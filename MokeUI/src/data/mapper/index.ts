@@ -11,7 +11,9 @@ import {
     ISubsidiaryInfo,
     IInvitationInfo,
     IInvitation,
-    IArticleInfo
+    IArticleInfo,
+    IUserInfo,
+    IUser
 } from "moke-model";
 import { ArticleIsPublic } from "moke-enum";
 
@@ -114,6 +116,16 @@ class MokeMapper {
             date: info.create_date,
             status: info.status
         };
+    }
+
+    public mapUserInfoToModel(info: IUserInfo): IUser {
+        return {
+            id: info.uid,
+            username: info.name,
+            password: info.password,
+            createDate: info.create_date,
+            status: info.status,
+        }
     }
 }
 

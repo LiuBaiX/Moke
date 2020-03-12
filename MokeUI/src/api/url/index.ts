@@ -3,6 +3,10 @@ import { InvitationStatusType } from "moke-enum";
 export default class MokeAPI {
     public baseURL = "http://localhost";
 
+    public getUserByFuzzyName = (fuzzyName: string) => {
+        return this.baseURL + `/user/${fuzzyName}`;
+    }
+
     public login = () => {
         return this.baseURL + "/user/login";
     }
@@ -39,8 +43,8 @@ export default class MokeAPI {
         return this.baseURL + "/article/not/display";
     }
 
-    public getDisplayArticleById = ()=>{
-        return this.baseURL +"/article"
+    public getDisplayArticleById = () => {
+        return this.baseURL + "/article"
     }
 
     public getSubsidiariesByArticleId = (id: string) => {
@@ -65,5 +69,9 @@ export default class MokeAPI {
 
     public cancelMySendedInvitation = (id: string) => {
         return this.baseURL + `/invitation/send/delete/${id}`;
+    }
+
+    public sendInvitation = (from: string, ref: string) => {
+        return this.baseURL + `/invitation/send/${from}/ref/${ref}`;
     }
 }

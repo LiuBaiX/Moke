@@ -3,6 +3,11 @@ enum RequestStatus {
     Success = 1,
 }
 
+enum ResponseStatusType {
+    Failed = "500",
+    Success = "200",
+}
+
 enum ArticleIsPublic {
     Yes = 1,
     No = 0,
@@ -35,5 +40,6 @@ export {
     ArticleIsPublic,
     SubsidiaryType,
     InvitationStatusType,
-    UserStatusType
+    UserStatusType,
+    ResponseStatusType
 }

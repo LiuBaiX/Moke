@@ -1,31 +1,43 @@
 import React from "react";
 import { MokeCard } from "../card";
-import { Tab, Col, Nav, Row, Button, Form } from "react-bootstrap";
+import { Tab, Col, Nav, Row, Button, Form, Spinner } from "react-bootstrap";
 import { MokeAppreciationTemplate } from "./MokeAppreciationTemplate";
 import { MokeAudioTemplate } from "./MokeAudioTemplate";
 import { MokeImageTemplate } from "./MokeImageTemplate";
 import { MokeVideoTemplate } from "./MokeVideoTemplate";
-import { MokeBasicList } from "../list";
-import { ISubsidiary } from "moke-model";
-import { SubsidiaryType } from "moke-enum";
 import { MokeNoDataTemplate } from "./ModeNoDataTemplate";
-import { MokeModal } from "moke-components";
+import { ISubsidiary, IUser, IInvitationResponse } from "moke-model";
+import { SubsidiaryType, ResponseStatusType } from "moke-enum";
+import {
+    MokeModal,
+    MokePeoplePicker,
+    MokeBasicList
+} from "moke-components";
+import { IBasePicker, IPersonaProps, RefObject } from "office-ui-fabric-react";
 
 export interface IMokeSubsidiaryDetailsTemplateProps {
     dataSource: ISubsidiary[];
     isDisplayInviteButton: boolean;
+    fetchUserDataByFuzzyName?: (fuzzyName: string) => Promise<IUser[]>;
+    onSubmit?: (description: string) => Promise<IInvitationResponse>;
+    pickerRef?: React.RefObject<IBasePicker<IPersonaProps>>;
 }
 
 interface IMokeSubsidiaryDetailsTemplateState {
     isOpen: boolean;
+    isRequesting: boolean;
 }
 
 export class MokeSubsidiaryDetailsTemplate extends React.Component<IMokeSubsidiaryDetailsTemplateProps, IMokeSubsidiaryDetailsTemplateState> {
+    private descriptionRef: React.RefObject<any>;
+
     constructor(props: IMokeSubsidiaryDetailsTemplateProps) {
         super(props);
         this.state = {
             isOpen: false,
+            isRequesting: false,
         };
+        this.descriptionRef = React.createRef();
     }
 
     public render() {
@@ -95,30 +107,54 @@ export class MokeSubsidiaryDetailsTemplate extends React.Component<IMokeSubsidia
     private renderModalFooter = () => {
         return <Button
             variant="outline-success"
+            disabled={this.state.isRequesting}
             onClick={() => {
-
-            }}>发送</Button>;
+                this.setState({
+                    isRequesting: true
+                });
+                this.props
+                    .onSubmit!(this.descriptionRef.current.value)
+                    .then((data) => {
+                        alert(
+                            data.status === ResponseStatusType.Failed
+                                ? `输入未通过验证,${data.message}`
+                                : `通过验证,${data.message}`,
+                        );
+                        this.setState({
+                            isRequesting: false,
+                            isOpen: false,
+                        });
+                    });
+            }}>
+            {
+                this.state.isRequesting
+                    ? <Spinner size="sm" animation="border" />
+                    : "邀请"
+            }
+        </Button>;
     }
 
     private renderModalContent = () => {
         return (
             <React.Fragment>
-                <Form>
+                <Form as={"div"}>
                     <Form.Group as={Row} controlId="formPlaintextEmail">
                         <Form.Label column sm="2">
                             收件人
                         </Form.Label>
                         <Col sm="10">
-                            <Form.Control />
+                            <MokePeoplePicker
+                                fetchUserData={this.props.fetchUserDataByFuzzyName}
+                                pickerRef={this.props.pickerRef}
+                            />
                         </Col>
                     </Form.Group>
-
                     <Form.Group as={Row}>
                         <Form.Label column sm="2">
                             描述
                         </Form.Label>
                         <Col sm="10">
-                            <Form.Control as="textarea" />
+                            <Form.Control as="textarea" ref={this.descriptionRef} />
                         </Col>
                     </Form.Group>
                 </Form>

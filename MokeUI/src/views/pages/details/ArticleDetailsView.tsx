@@ -1,12 +1,11 @@
 import React from "react";
 import { ArticleService, SubsidiaryService } from "moke-service";
 import { mokeMapper } from "moke-mapper";
-import { IArticleForDisplay, ISubsidiary } from "moke-model";
+import { IArticleForDisplay, ISubsidiary, IInvitationRequest, IUser, IInvitationResponse } from "moke-model";
 import { MokeLoadingPage, MokeArticleDetailsTemplate, MokeSubsidiaryDetailsTemplate } from "moke-components";
 import { Row, Col } from "react-bootstrap";
 import "./index.scss";
-import { IAppState } from "moke-state";
-import { connect } from "react-redux";
+import { IBasePicker, IPersonaProps } from "office-ui-fabric-react";
 
 interface IArticleDetailsViewOwnProps {
     id: string;
@@ -19,12 +18,22 @@ interface IArticleDetailsViewState {
     subsidiaryDataSource?: ISubsidiary[];
 }
 
-class MiddleComponent extends React.Component<IArticleDetailsViewOwnProps, IArticleDetailsViewState> {
-    constructor(props: IArticleDetailsViewOwnProps) {
+interface IArticleDetailsViewMapDispatchToProps {
+    onSubmitInvitation?: (data: IInvitationRequest) => Promise<IInvitationResponse>;
+    fetchUserDataByFuzzyName?: (fuzzyName: string) => Promise<IUser[]>;
+}
+
+export type IArticleDetailsViewProps = IArticleDetailsViewOwnProps
+    & IArticleDetailsViewMapDispatchToProps;
+
+export class ArticleDetailsView extends React.Component<IArticleDetailsViewProps, IArticleDetailsViewState> {
+    private pickerRef: React.RefObject<IBasePicker<IPersonaProps>>;
+    constructor(props: IArticleDetailsViewProps) {
         super(props);
         this.state = {
             isLoading: true
-        }
+        };
+        this.pickerRef = React.createRef();
     }
 
     public componentDidMount() {
@@ -68,6 +77,18 @@ class MiddleComponent extends React.Component<IArticleDetailsViewOwnProps, IArti
                                             this.props.uid?.toString() === this.state.articleDataSource?.authorId
                                         }
                                         dataSource={this.state.subsidiaryDataSource!}
+                                        fetchUserDataByFuzzyName={this.props.fetchUserDataByFuzzyName}
+                                        onSubmit={(description: string) => {
+                                            const dataSource: IInvitationRequest = {
+                                                from: this.props.uid!.toString(),
+                                                to: this.pickerRef.current?.items?.map((item) => item.optionalText).join(";") as string,
+                                                description,
+                                                ref: this.state.articleDataSource?.articleId!.toString(),
+                                            };
+                                            console.log(this.pickerRef.current?.items);
+                                            return this.props.onSubmitInvitation!(dataSource);
+                                        }}
+                                        pickerRef={this.pickerRef}
                                     />
                                 </Col>
                             </Row>
@@ -76,16 +97,4 @@ class MiddleComponent extends React.Component<IArticleDetailsViewOwnProps, IArti
             </React.Fragment>
         );
     }
-}
-
-const mapStateToProps = ({ user }: IAppState) => {
-    return {
-        uid: user.uid
-    };
-}
-
-const ArticleDetailsView = connect(mapStateToProps)(MiddleComponent);
-
-export {
-    ArticleDetailsView
 }

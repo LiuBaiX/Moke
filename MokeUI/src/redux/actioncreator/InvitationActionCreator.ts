@@ -1,6 +1,6 @@
 import constants from "moke-constants";
 import { IInvitationAction } from "moke-action";
-import { IInvitation } from "moke-model";
+import { IInvitation, IInvitationRequest, IInvitationResponse } from "moke-model";
 import { ThunkAction } from "redux-thunk";
 import { IAppState } from "moke-state";
 import { InvitationService, ArticleService } from "moke-service";
@@ -96,10 +96,14 @@ const cancelMySendedInvitation = (id: string): ThunkAction<Promise<void>, IAppSt
     }
 }
 
+const sendInvitation = (data: IInvitationRequest): Promise<IInvitationResponse> => {
+    return InvitationService.sendInvitation(data);
+}
 
 export default {
     fetchMyReceivedInvitations,
     fetchMySendedInvitations,
     updateMyReceivedInvitationStatus,
     cancelMySendedInvitation,
+    sendInvitation,
 }
