@@ -65,9 +65,14 @@ const fetchMyArticles = (): ThunkAction<Promise<void>, IAppState, null, IArticle
     }
 }
 
+const deleteMyArticle = (id: string) => {
+    return ArticleService.deleteArticle(id);
+}
+
 export default {
     addArticle,
     editArticle,
     fetchArticles,
     fetchMyArticles,
+    deleteMyArticle
 }

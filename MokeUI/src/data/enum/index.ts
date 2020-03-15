@@ -13,6 +13,27 @@ enum ArticleIsPublic {
     No = 0,
 }
 
+enum FileMIMEType {
+    All = 0,
+    Image = 1,
+    Audio = 2,
+    Video=3
+}
+
+enum ImageMIMEType {
+    Png = 4,
+    Jpg = 5,
+    Gif = 6
+}
+
+enum AudioMIMEType {
+    Mp3 = 7
+}
+
+enum VideoMIMEType {
+    Mp4 = 8
+}
+
 enum SubsidiaryType {
     Drawing = 1,
     Declaim = 2,
@@ -41,5 +62,9 @@ export {
     SubsidiaryType,
     InvitationStatusType,
     UserStatusType,
-    ResponseStatusType
+    ResponseStatusType,
+    FileMIMEType,
+    ImageMIMEType,
+    AudioMIMEType,
+    VideoMIMEType,
 }

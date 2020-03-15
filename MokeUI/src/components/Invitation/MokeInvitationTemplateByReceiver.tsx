@@ -22,13 +22,16 @@ interface IMokeInvitationTemplateByReceiverState {
     data?: IInvitation;
 }
 
-const CreateButton: React.FunctionComponent<{ articleId: string }> = (props) => {
+const CreateButton: React.FunctionComponent<{
+    articleId: string,
+    invitationId: string
+}> = (props) => {
     const history = useHistory();
 
     return (
         <Button variant="outline-success"
             onClick={() => {
-                history.push(`/create/subsidiary/${props.articleId}`);
+                history.push(`/create/subsidiary/${props.articleId}/${props.invitationId}`);
             }}>开始创作</Button>
     );
 }
@@ -92,7 +95,9 @@ export class MokeInvitationTemplateByReceiver extends React.Component<IMokeInvit
                                                                         }}>详情</Button>
                                                                     {
                                                                         item.status === InvitationStatusType.Accept
-                                                                            ? <CreateButton articleId={item.article.articleId.toString()} />
+                                                                            ? <CreateButton
+                                                                                invitationId={item.invitationId}
+                                                                                articleId={item.article.articleId.toString()} />
                                                                             : null
                                                                     }
                                                                 </React.Fragment>
@@ -167,7 +172,9 @@ export class MokeInvitationTemplateByReceiver extends React.Component<IMokeInvit
             footer={
                 data?.status !== InvitationStatusType.Sustaining
                     ? data?.status === InvitationStatusType.Accept
-                        ? <CreateButton articleId={data.article.articleId.toString()} />
+                        ? <CreateButton
+                            invitationId={data.invitationId}
+                            articleId={data.article.articleId.toString()} />
                         : null
                     : this.renderModalFooter(data?.invitationId)
             }

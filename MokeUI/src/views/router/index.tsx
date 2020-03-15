@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { IAppState } from "moke-state";
 import { ArticleDetails } from "src/views/pages/details";
 import { CreateCenter } from "../pages/createcenter";
+import { SubsidiaryEditor } from "../pages/createcenter/subsidiary";
 
 function renderRouter() {
     const routeConfig = [
@@ -40,8 +41,8 @@ function renderRouter() {
             children: <EditArticle />,
         },
         {
-            path: "/create/subsidiary/:id",
-            children: "Create Subsidiary",
+            path: "/create/subsidiary/:id/:invitationId",
+            children: <SubsidiaryEditor />,
         },
         {
             path: "/details/:id",

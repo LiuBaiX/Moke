@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { MokeCard } from "../card";
-import { IArticleForDisplay } from "moke-model";
-import { Badge, Button } from "react-bootstrap";
+import { IArticleForDisplay, IInvitationResponse } from "moke-model";
+import { Badge, Button, ButtonGroup, Spinner } from "react-bootstrap";
 import { SimpleString } from "moke-util";
 import "./index.scss";
 import { useHistory } from "react-router";
@@ -16,12 +16,18 @@ interface IMokeArticleDetailsTemplateViewMapStateToProps {
     uid?: number;
 }
 
+interface IMokeArticleDetailsTemplateViewMapDispatchToProps {
+    deleteArticle: (id: string) => Promise<IInvitationResponse>;
+}
+
 export type IMokeArticleDetailsTemplateProps = IMokeArticleDetailsTemplateViewOwnProps
-    & IMokeArticleDetailsTemplateViewMapStateToProps;
+    & IMokeArticleDetailsTemplateViewMapStateToProps
+    & IMokeArticleDetailsTemplateViewMapDispatchToProps;
 
 const MokeArticleDetailsTemplateView: React.FunctionComponent<IMokeArticleDetailsTemplateProps> = (props) => {
     const { dataSource } = props;
     const history = useHistory();
+    const [isDeleting, setIsDeleting] = useState(false);
 
     return (
         <React.Fragment>
@@ -31,13 +37,37 @@ const MokeArticleDetailsTemplateView: React.FunctionComponent<IMokeArticleDetail
                     props.uid?.toString() === dataSource.authorId
                         ? () => {
                             return (
-                                <Button
-                                    className="float-right"
-                                    variant="outline-success"
-                                    onClick={() => {
-                                        history.push(`/create/article/edit/${dataSource.articleId}`);
-                                    }}
-                                >编辑</Button>
+                                <ButtonGroup className="float-right">
+                                    <Button
+                                        disabled={isDeleting}
+                                        variant="outline-success"
+                                        onClick={() => {
+                                            history.push(`/create/article/edit/${dataSource.articleId}`);
+                                        }}
+                                    >编辑</Button>
+                                    <Button
+                                        disabled={isDeleting}
+                                        variant="outline-danger"
+                                        onClick={() => {
+                                            const willDelete = window.confirm(`确定要删除[ ${dataSource.name} ]吗？`);
+                                            if (!willDelete) {
+                                                return;
+                                            }
+                                            setIsDeleting(true);
+                                            props.deleteArticle!(dataSource.articleId.toString()).then((response) => {
+                                                setIsDeleting(false);
+                                                alert(`处理结果:${response.message}`);
+                                                history.push("/create");
+                                            });
+                                        }}
+                                    >
+                                        {
+                                            isDeleting
+                                                ? <Spinner animation="border" size="sm" />
+                                                : "删除"
+                                        }
+                                    </Button>
+                                </ButtonGroup>
                             );
                         }
                         : undefined

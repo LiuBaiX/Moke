@@ -3,6 +3,7 @@ import { IUserState } from "./IUserState";
 import { IArticleTypeState } from "./IArticleTypeState";
 import { IArticleState } from "./IArticleState";
 import { IInvitationState } from "./IInvitationState";
+import { ISubsidiaryState } from "./ISubsidiaryState";
 
 interface IAppState {
     error: IErrorState;
@@ -10,6 +11,7 @@ interface IAppState {
     articleTypes: IArticleTypeState;
     articles: IArticleState;
     invitations: IInvitationState;
+    subsidiary: ISubsidiaryState;
 }
 
 export {
@@ -19,4 +21,5 @@ export {
     IArticleTypeState,
     IArticleState,
     IInvitationState,
+    ISubsidiaryState,
 };

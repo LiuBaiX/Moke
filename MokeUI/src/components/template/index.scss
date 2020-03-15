@@ -1,6 +1,12 @@
 .moke-article-details-template {
     text-align: center;
 }
-.moke-article-details-template-tab-pane{
+
+.moke-article-details-template-tab-pane {
     border-left: 1px solid #eee;
+}
+
+.moke-subsidiary-details-template {
+    height: 26em;
+    overflow: auto;
 }

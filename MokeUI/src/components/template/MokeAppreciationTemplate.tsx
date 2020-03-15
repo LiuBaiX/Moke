@@ -11,9 +11,9 @@ export const MokeAppreciationTemplate = (props: IMokeAppreciationTemplateProps) 
         <React.Fragment>
             <h4>{dataSource.title}</h4>
             <p className="text-muted">{dataSource.authorDisplayName} 作于 {dataSource.createDate}</p>
-            <pre>
+            <p>
                 {dataSource.content}
-            </pre>
+            </p>
         </React.Fragment>
     );
 }

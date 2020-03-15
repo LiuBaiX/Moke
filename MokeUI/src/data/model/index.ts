@@ -16,6 +16,8 @@ import { IUser } from "./IUser";
 import { IUserInfo } from "./IUserInfo";
 import { IInvitationRequest } from "./IInvitationRequest";
 import { IInvitationResponse } from "./IInvitationResponse";
+import { ISubsidiaryForm } from "./ISubsidiaryForm";
+import { ICommonResponseInfo } from "./ICommonResponseInfo";
 
 export {
     IArticleForDisplay,
@@ -36,4 +38,6 @@ export {
     IUserInfo,
     IInvitationRequest,
     IInvitationResponse,
+    ISubsidiaryForm,
+    ICommonResponseInfo,
 }

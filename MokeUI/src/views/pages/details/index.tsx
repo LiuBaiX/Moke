@@ -2,7 +2,7 @@ import React from "react";
 import { ArticleDetailsView } from "./ArticleDetailsView";
 import { useParams } from "react-router";
 import { connect } from "react-redux";
-import { InvitationActionCreator, UserActionCreator } from "moke-action-creator";
+import { InvitationActionCreator, UserActionCreator, ArticleActionCreator } from "moke-action-creator";
 import { IAppState } from "moke-state";
 
 const mapStateToProps = ({ user }: IAppState) => {
@@ -15,6 +15,7 @@ const mapDispatchToProps = () => {
     return {
         onSubmitInvitation: InvitationActionCreator.sendInvitation,
         fetchUserDataByFuzzyName: UserActionCreator.fetchUserDataByFuzzyName,
+        deleteArticle: ArticleActionCreator.deleteMyArticle
     };
 }
 

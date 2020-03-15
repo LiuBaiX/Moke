@@ -12,7 +12,7 @@ export const MokeImageTemplate = (props: IMokeImageTemplateProps) => {
         <React.Fragment>
             <h4>{dataSource.title}</h4>
             <p className="text-muted">{dataSource.authorDisplayName} 作于 {dataSource.createDate}</p>
-            <Image src={dataSource.src} thumbnail />
+            <Image src={dataSource.src} thumbnail alt={`[${dataSource.title}]未找到`} />
         </React.Fragment>
     );
 }

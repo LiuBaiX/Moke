@@ -1,6 +1,6 @@
 import { MokeSender } from 'moke-util';
 import MokeAPI from '../url';
-import { IArticleForm, IArticleForDisplayInfo, IArticleInfo, IUpdateArticleReturnsInfo } from 'moke-model';
+import { IArticleForm, IArticleForDisplayInfo, IArticleInfo, IUpdateArticleReturnsInfo, IInvitationResponse } from 'moke-model';
 
 const mokeSender = new MokeSender();
 const mokeAPI = new MokeAPI();
@@ -13,6 +13,11 @@ const addArticle = (articleForm: IArticleForm): Promise<IUpdateArticleReturnsInf
 const editArticle = (articleForm: IArticleForm): Promise<IUpdateArticleReturnsInfo> => {
     const url = `${mokeAPI.editArticle()}/${articleForm.articleId}`;
     return mokeSender.send(url, "POST", articleForm);
+}
+
+const deleteArticle = (id: string): Promise<IInvitationResponse> => {
+    const url = mokeAPI.deleteArticle(id);
+    return mokeSender.send(url, "POST");
 }
 
 const getPublicArticles = (page: number): Promise<IArticleForDisplayInfo[]> => {
@@ -46,4 +51,5 @@ export default {
     getMyArticles,
     editArticle,
     getDisplayArticleById,
+    deleteArticle,
 }

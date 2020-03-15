@@ -45,6 +45,14 @@ type variant = undefined
     | 'dark'
     | 'light';
 
+const LogoutButton: React.FunctionComponent<{ logout: () => void }> = (props) => {
+    return <Button variant="outline-danger"
+        onClick={() => {
+            props.logout();
+            window.location.replace("/home");
+        }}>注销</Button>;
+}
+
 export class MokeNavView extends React.Component<IMokeNavProps, IMokeNavSate>{
     constructor(props: IMokeNavProps) {
         super(props);
@@ -176,10 +184,7 @@ export class MokeNavView extends React.Component<IMokeNavProps, IMokeNavSate>{
                     }}>
                     {this.props.username}
                 </Button>
-                <Button variant="outline-danger"
-                    onClick={() => {
-                        this.props.logout();
-                    }}>注销</Button>
+                <LogoutButton logout={this.props.logout} />
             </React.Fragment>
         );
     }

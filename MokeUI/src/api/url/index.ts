@@ -1,4 +1,4 @@
-import { InvitationStatusType } from "moke-enum";
+import { InvitationStatusType, SubsidiaryType } from "moke-enum";
 
 export default class MokeAPI {
     public baseURL = "http://localhost";
@@ -39,6 +39,10 @@ export default class MokeAPI {
         return this.baseURL + "/article/edit";
     }
 
+    public deleteArticle = (id: string) => {
+        return this.baseURL + `/article/delete/${id}`;
+    }
+
     public getArticleById = () => {
         return this.baseURL + "/article/not/display";
     }
@@ -49,6 +53,18 @@ export default class MokeAPI {
 
     public getSubsidiariesByArticleId = (id: string) => {
         return this.baseURL + `/subsidiary/${id}`;
+    }
+
+    public getSubsidiariesByUserId = (id: string) => {
+        return this.baseURL + `/subsidiary/mine/${id}`;
+    }
+
+    public addSubsidiary = (articleId: string, uid: string, type_id: SubsidiaryType, invitationId: string) => {
+        return this.baseURL + `/subsidiary/add/${articleId}/${uid}/${type_id}/${invitationId}`;
+    }
+
+    public deleteSubsidiary = (subsidiaryId: string) => {
+        return this.baseURL + `/subsidiary/delete/${subsidiaryId}`;
     }
 
     public getMyArticles = (id: string) => {

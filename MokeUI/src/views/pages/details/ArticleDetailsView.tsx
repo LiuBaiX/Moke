@@ -21,6 +21,7 @@ interface IArticleDetailsViewState {
 interface IArticleDetailsViewMapDispatchToProps {
     onSubmitInvitation?: (data: IInvitationRequest) => Promise<IInvitationResponse>;
     fetchUserDataByFuzzyName?: (fuzzyName: string) => Promise<IUser[]>;
+    deleteArticle?: (id: string) => Promise<IInvitationResponse>;
 }
 
 export type IArticleDetailsViewProps = IArticleDetailsViewOwnProps
@@ -67,7 +68,10 @@ export class ArticleDetailsView extends React.Component<IArticleDetailsViewProps
                         : <React.Fragment>
                             <Row className="moke-article-details-margin-bottom">
                                 <Col>
-                                    <MokeArticleDetailsTemplate dataSource={this.state.articleDataSource!} />
+                                    <MokeArticleDetailsTemplate
+                                        dataSource={this.state.articleDataSource!}
+                                        deleteArticle={this.props.deleteArticle!}
+                                    />
                                 </Col>
                             </Row>
                             <Row>

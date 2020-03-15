@@ -14,6 +14,7 @@ import {
     MokeBasicList
 } from "moke-components";
 import { IBasePicker, IPersonaProps, RefObject } from "office-ui-fabric-react";
+import "index.scss";
 
 export interface IMokeSubsidiaryDetailsTemplateProps {
     dataSource: ISubsidiary[];
@@ -43,7 +44,13 @@ export class MokeSubsidiaryDetailsTemplate extends React.Component<IMokeSubsidia
     public render() {
         return (
             <React.Fragment>
-                <MokeCard headerText="衍生作品"
+                <MokeCard
+                    headerText="衍生作品"
+                    styles={{
+                        body: {
+                            root: "moke-subsidiary-details-template"
+                        }
+                    }}
                     onRenderHeader={
                         this.props.isDisplayInviteButton
                             ? () => {

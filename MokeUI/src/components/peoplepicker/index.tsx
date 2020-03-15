@@ -1,27 +1,19 @@
-import React, { createRef } from "react";
+import React from "react";
 import { NormalPeoplePicker, IPersonaProps, IBasePicker, IBasePickerSuggestionsProps, ValidationState } from "office-ui-fabric-react";
 import { IUser } from "moke-model";
 import { UserStatusType } from "moke-enum";
+import { SimpleSession } from "moke-util";
 
 export interface IMokePeoplePickerProps {
     fetchUserData?: (fuzzyName: string) => Promise<IUser[]>;
     pickerRef?: React.RefObject<IBasePicker<IPersonaProps>>;
 }
 
-interface IMokePeoplePickerState {
-    peopleList: IPersonaProps[];
-    mostRecentlyUsed: IPersonaProps[];
-    peopleItems: IPersonaProps[];
-}
-
-export class MokePeoplePicker extends React.Component<IMokePeoplePickerProps, IMokePeoplePickerState> {
+export class MokePeoplePicker extends React.Component<IMokePeoplePickerProps> {
+    private userSelf: string;
     constructor(props: IMokePeoplePickerProps) {
         super(props);
-        this.state = {
-            peopleList: [],
-            mostRecentlyUsed: [],
-            peopleItems: [],
-        };
+        this.userSelf = SimpleSession.getSession("user").username;
     }
 
     public render() {
@@ -33,6 +25,9 @@ export class MokePeoplePicker extends React.Component<IMokePeoplePickerProps, IM
         return (
             <NormalPeoplePicker
                 onResolveSuggestions={(filterText, selectedItems = []) => {
+                    if (selectedItems.length > 0) {
+                        return [];
+                    }
                     return this.props.fetchUserData!(filterText).then((users) => {
                         return users
                             .map((user) => {
@@ -45,11 +40,10 @@ export class MokePeoplePicker extends React.Component<IMokePeoplePickerProps, IM
                             .filter((suggestionItem) => {
                                 return !selectedItems.some((selectedItem) => {
                                     return selectedItem.text === suggestionItem.text;
-                                });
+                                }) && suggestionItem.text !== this.userSelf;
                             });
                     })
                 }}
-                // onRemoveSuggestion={this.onRemoveSuggestion}
                 getTextFromItem={this.getTextFromItem}
                 pickerSuggestionsProps={suggestionProps}
                 onValidateInput={this.validateInput}
