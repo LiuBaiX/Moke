@@ -69,7 +69,7 @@ export class MokeNavView extends React.Component<IMokeNavProps, IMokeNavSate>{
                 <Row>
                     <Col>
                         <Link
-                            to="/home"
+                            to="/client/home"
                             className="nav-link moke-homepage-nav-headerLink">
                             <h2>墨客</h2>
                         </Link>
@@ -115,7 +115,7 @@ export class MokeNavView extends React.Component<IMokeNavProps, IMokeNavSate>{
                             variant={this.state.isActive[0] as any}
                             onClick={() => {
                                 this.whichIsActive(0);
-                                this.props.history.push("/article");
+                                this.props.history.push("/client/article");
                             }}>
                             文学宝库
                         </ListGroup.Item>
@@ -124,7 +124,7 @@ export class MokeNavView extends React.Component<IMokeNavProps, IMokeNavSate>{
                             variant={this.state.isActive[2] as any}
                             onClick={() => {
                                 this.whichIsActive(2);
-                                this.props.history.push("/user");
+                                this.props.history.push("/client/user");
                             }}>
                             个人中心
                         </ListGroup.Item>
@@ -133,7 +133,7 @@ export class MokeNavView extends React.Component<IMokeNavProps, IMokeNavSate>{
                             variant={this.state.isActive[3] as any}
                             onClick={() => {
                                 this.whichIsActive(3);
-                                this.props.history.push("/invitation");
+                                this.props.history.push("/client/invitation");
                             }}>
                             邀请管理
                         </ListGroup.Item>
@@ -142,7 +142,7 @@ export class MokeNavView extends React.Component<IMokeNavProps, IMokeNavSate>{
                             variant={this.state.isActive[1] as any}
                             onClick={() => {
                                 this.whichIsActive(1);
-                                this.props.history.push("/notification");
+                                this.props.history.push("/client/notification");
                             }}>
                             我的通知
                         </ListGroup.Item>
@@ -151,7 +151,7 @@ export class MokeNavView extends React.Component<IMokeNavProps, IMokeNavSate>{
                             variant={this.state.isActive[4] as any}
                             onClick={() => {
                                 this.whichIsActive(4);
-                                this.props.history.push("/create");
+                                this.props.history.push("/client/create");
                             }}>
                             我的作品
                         </ListGroup.Item>

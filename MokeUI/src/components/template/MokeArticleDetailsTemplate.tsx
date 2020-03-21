@@ -42,7 +42,7 @@ const MokeArticleDetailsTemplateView: React.FunctionComponent<IMokeArticleDetail
                                         disabled={isDeleting}
                                         variant="outline-success"
                                         onClick={() => {
-                                            history.push(`/create/article/edit/${dataSource.articleId}`);
+                                            history.push(`/client/create/article/edit/${dataSource.articleId}`);
                                         }}
                                     >编辑</Button>
                                     <Button
@@ -57,7 +57,7 @@ const MokeArticleDetailsTemplateView: React.FunctionComponent<IMokeArticleDetail
                                             props.deleteArticle!(dataSource.articleId.toString()).then((response) => {
                                                 setIsDeleting(false);
                                                 alert(`处理结果:${response.message}`);
-                                                history.push("/create");
+                                                history.push("/client/create");
                                             });
                                         }}
                                     >

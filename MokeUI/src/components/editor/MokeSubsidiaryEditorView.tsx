@@ -137,7 +137,7 @@ export const MokeSubsidiaryEditorView: React.FunctionComponent<IMokeSubsidiaryEd
                                     alert(`操作失败，服务器返回消息：${data.message}`);
                                 }
                                 setIsSaving(false);
-                                history.push(`/details/${id}`);
+                                history.push(`/client/details/${id}`);
                             });
                         }}
                     >保存</Button>

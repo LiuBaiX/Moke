@@ -55,7 +55,7 @@ const SubmitButton: React.FunctionComponent<ISubmitButtonProps> = (props) => {
                     return;
                 }
                 props.onSave().then((data) => {
-                    history.push(`/details/${data.aid}`);
+                    history.push(`/client/details/${data.aid}`);
                 });
             }}>
             发布

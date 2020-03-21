@@ -31,7 +31,7 @@ const CreateButton: React.FunctionComponent<{
     return (
         <Button variant="outline-success"
             onClick={() => {
-                history.push(`/create/subsidiary/${props.articleId}/${props.invitationId}`);
+                history.push(`/client/create/subsidiary/${props.articleId}/${props.invitationId}`);
             }}>开始创作</Button>
     );
 }
@@ -290,7 +290,7 @@ export class MokeInvitationTemplateByReceiver extends React.Component<IMokeInvit
                                 articleTypeDisplayName: "未知",
                             }}
                             as={MokeCardAsType.button}
-                            to={"/details"} /></Col>
+                            to={"/client/details"} /></Col>
                 </Row>
             </React.Fragment>
         );

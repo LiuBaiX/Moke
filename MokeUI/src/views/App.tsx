@@ -1,13 +1,13 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
-import store from '../redux';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
-import { MokeNav } from './nav';
-import { MokeRouter } from './router';
-import { initializeIcons } from '@uifabric/icons';
+import { MokeNav } from './client/nav';
+import { AdminRouter, ClientRouter } from './router';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
+import { initializeIcons } from '@uifabric/icons';
+import store from '../redux';
 
 initializeIcons();
 
@@ -17,20 +17,41 @@ function App() {
       <BrowserRouter>
         <Container fluid>
           <Row>
-            <Col md={3} sm={0} className={"moke-app-nav fixed-top"}>
-              <aside>
-                <nav>
-                  <MokeNav />
-                </nav>
-              </aside>
-            </Col>
-            <Col md={{ span: 9, offset: 3 }} className={"moke-app-main"}>
-              <main>
-                <article>
-                  <MokeRouter />
-                </article>
-              </main>
-            </Col>
+            <Route path="/" exact >
+              <Redirect to="/client" />
+            </Route >
+            <Route path="/client">
+              <Col md={3} sm={0} className={"moke-app-nav fixed-top"}>
+                <aside>
+                  <nav>
+                    <MokeNav />
+                  </nav>
+                </aside>
+              </Col>
+              <Col md={{ span: 9, offset: 3 }} className={"moke-app-main"}>
+                <main>
+                  <article>
+                    <ClientRouter />
+                  </article>
+                </main>
+              </Col>
+            </Route>
+            <Route path="/admin">
+              <Col md={3} sm={0} className={"moke-app-nav fixed-top"}>
+                <aside>
+                  <nav>
+                    
+                  </nav>
+                </aside>
+              </Col>
+              <Col md={{ span: 9, offset: 3 }} className={"moke-app-main"}>
+                <main>
+                  <article>
+                    <AdminRouter />
+                  </article>
+                </main>
+              </Col>
+            </Route>
           </Row>
         </Container>
       </BrowserRouter>

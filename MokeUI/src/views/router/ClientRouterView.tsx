@@ -1,67 +1,69 @@
 import React from "react";
 import { Route, Redirect, Switch } from "react-router";
-import { HomePage } from "src/views/pages/homepage";
-import { Article } from "src/views/pages/article";
-import { Notification } from "src/views/pages/notification";
-import { InvitationCenter } from "src/views/pages/invitation";
-import { CreateNewArticle, EditArticle } from "src/views/pages/createcenter/article";
-import Welcome from "../pages/welcome";
 import { connect } from "react-redux";
 import { IAppState } from "moke-state";
-import { ArticleDetails } from "src/views/pages/details";
-import { CreateCenter } from "../pages/createcenter";
-import { SubsidiaryEditor } from "../pages/createcenter/subsidiary";
-import { UserCenter } from "../pages/usercenter";
+import {
+    HomePage,
+    Article,
+    Notification,
+    InvitationCenter,
+    CreateNewArticle, EditArticle,
+    Welcome,
+    ArticleDetails,
+    CreateCenter,
+    SubsidiaryEditor,
+    UserCenter
+} from "../client";
 
 function renderRouter() {
     const routeConfig = [
         {
-            path: "/",
-            children: <Redirect to="/home" />,
+            path: "/client",
+            children: <Redirect to="/client/home" />,
             exact: true,
         },
         {
-            path: "/home",
+            path: "/client/home",
             children: <HomePage />,
         },
         {
-            path: "/notification",
+            path: "/client/notification",
             children: <Notification />,
         },
         {
-            path: "/article",
+            path: "/client/article",
             children: <Article />,
             exact: true,
         },
         {
-            path: "/invitation",
+            path: "/client/invitation",
             children: <InvitationCenter />,
             exact: true,
         },
         {
-            path: "/create",
+            path: "/client/create",
             children: <CreateCenter />,
             exact: true,
         },
         {
-            path: "/create/article/add",
+            path: "/client/create/article/add",
             children: <CreateNewArticle />,
             exact: true,
         },
         {
-            path: "/create/article/edit/:id",
+            path: "/client/create/article/edit/:id",
             children: <EditArticle />,
         },
         {
-            path: "/create/subsidiary/:id/:invitationId",
+            path: "/client/create/subsidiary/:id/:invitationId",
             children: <SubsidiaryEditor />,
         },
         {
-            path: "/details/:id",
+            path: "/client/details/:id",
             children: <ArticleDetails />,
         },
         {
-            path: "/user",
+            path: "/client/user",
             children: <UserCenter />
         }
     ];
@@ -80,13 +82,13 @@ function renderRouter() {
     );
 }
 
-interface IMokeRouterMapStateToProps {
+interface IClientRouterMapStateToProps {
     uid?: number;
 }
 
-type IMokeRouterProps = IMokeRouterMapStateToProps;
+type IClientRouterProps = IClientRouterMapStateToProps;
 
-function MokeRouterView(props: IMokeRouterProps) {
+function ClientRouterView(props: IClientRouterProps) {
     return (
         <React.Fragment>
             {
@@ -104,7 +106,6 @@ const mapStateToProps = ({ user }: IAppState) => {
     }
 }
 
-const MokeRouter = connect(mapStateToProps)(MokeRouterView);
+const ClientRouter = connect(mapStateToProps)(ClientRouterView);
 
-export { MokeRouter };
-
+export { ClientRouter };

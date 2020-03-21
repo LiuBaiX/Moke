@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Row, Jumbotron, Container
+    Jumbotron, Container
 } from 'react-bootstrap';
 import './index.scss';
 
@@ -9,9 +9,6 @@ export interface IHomePageProps {
 }
 
 export class HomePageView extends React.Component<IHomePageProps>{
-    constructor(props: IHomePageProps) {
-        super(props);
-    }
     public render(): JSX.Element {
         return (
             <Jumbotron fluid>

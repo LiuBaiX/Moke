@@ -55,7 +55,7 @@ export class ArticleView extends React.Component<IArticleViewProps, IArticleView
                 as={MokeCardAsType.button}
                 id={`moke-article${index}`}
                 dataSource={item}
-                to={"/details"}
+                to={"/client/details"}
             />
         });
     }
