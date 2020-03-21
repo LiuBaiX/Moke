@@ -3,6 +3,7 @@ import ArticleTypeActionCreator from "./ArticleTypeActionCreator";
 import ArticleActionCreator from "./ArticleActionCreator";
 import InvitationActionCreator from "./InvitationActionCreator";
 import SubsidiaryActionCreator from "./SubsidiaryActionCreator";
+import NotificationActionCreator from "./NotificationActionCreator";
 
 export {
     UserActionCreator,
@@ -10,4 +11,5 @@ export {
     ArticleActionCreator,
     InvitationActionCreator,
     SubsidiaryActionCreator,
+    NotificationActionCreator,
 }

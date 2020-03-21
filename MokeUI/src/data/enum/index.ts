@@ -17,7 +17,7 @@ enum FileMIMEType {
     All = 0,
     Image = 1,
     Audio = 2,
-    Video=3
+    Video = 3
 }
 
 enum ImageMIMEType {
@@ -53,7 +53,11 @@ enum UserStatusType {
     Normal = 0,
     Baned = 1,
     Confined = 2,
-    Monitored = 3,
+}
+
+enum NotificationStatusType {
+    NotRead = 0,
+    Read = 1
 }
 
 export {
@@ -67,4 +71,5 @@ export {
     ImageMIMEType,
     AudioMIMEType,
     VideoMIMEType,
+    NotificationStatusType,
 }

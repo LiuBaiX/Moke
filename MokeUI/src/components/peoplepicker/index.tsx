@@ -25,9 +25,6 @@ export class MokePeoplePicker extends React.Component<IMokePeoplePickerProps> {
         return (
             <NormalPeoplePicker
                 onResolveSuggestions={(filterText, selectedItems = []) => {
-                    if (selectedItems.length > 0) {
-                        return [];
-                    }
                     return this.props.fetchUserData!(filterText).then((users) => {
                         return users
                             .map((user) => {

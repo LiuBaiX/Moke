@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
     MokeCard,
-    MokeInvitationTemplateByReceiver,
     MokeLoadingPage,
-    MokeInvitationTemplateBySender,
     MokeSubsidiaryListTemplate
 } from "moke-components";
 import { Row, Col, Button } from "react-bootstrap";
@@ -14,7 +12,6 @@ import { connect } from "react-redux";
 import { ArticleView } from "../article/ArticleView";
 import { useHistory } from "react-router";
 import { IInvitation, ISubsidiary } from "moke-model";
-import { InvitationStatusType } from "moke-enum";
 
 const mapStateToProps = ({ articles }: IAppState) => {
     return {
@@ -35,11 +32,7 @@ interface ICreateCenterViewMapStateToProps {
 }
 
 interface ICreateCenterViewMapDispatchToProps {
-    fetchMyReceivedInvitations?: () => Promise<void>;
-    fetchMySendedInvitations?: () => Promise<void>;
     fetchMySubsidiaries?: () => Promise<void>;
-    updateMyReceivedInvitationStatus?: (id: string, status: InvitationStatusType) => Promise<void>;
-    cancelMySendedInvitation?: (id: string) => Promise<void>;
     deleteSubsidiary?: (id: string) => Promise<void>;
 }
 
@@ -50,17 +43,10 @@ export const CreateCenterView: React.FunctionComponent<ICreateCenterViewProps> =
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const promises = [
-            props.fetchMyReceivedInvitations!(),
-            props.fetchMySendedInvitations!(),
-            props.fetchMySubsidiaries!(),
-        ];
-        Promise.all(promises).then(() => {
+        props.fetchMySubsidiaries!().then(() => {
             setIsLoading(false);
         });
     }, [
-        props.fetchMyReceivedInvitations,
-        props.fetchMySendedInvitations,
         props.fetchMySubsidiaries
     ]);
 
@@ -99,41 +85,6 @@ export const CreateCenterView: React.FunctionComponent<ICreateCenterViewProps> =
                                 : <MokeSubsidiaryListTemplate
                                     dataSource={props.mySubsidiaries!}
                                     onDelete={props.deleteSubsidiary!}
-                                />
-                        }
-                    </MokeCard>
-                </Col>
-            </Row>
-            <Row className="moke-create-center-card">
-                <Col>
-                    <MokeCard headerText={"收到的合著邀请函"}>
-                        {
-                            isLoading
-                                ? <MokeLoadingPage />
-                                : <MokeInvitationTemplateByReceiver
-                                    onAccept={(id) => {
-                                        return props.updateMyReceivedInvitationStatus!(id, InvitationStatusType.Accept);
-                                    }}
-                                    onReject={(id) => {
-                                        return props.updateMyReceivedInvitationStatus!(id, InvitationStatusType.Reject);
-                                    }}
-                                    dataSource={props.receivedInvitations || []}
-                                />
-                        }
-                    </MokeCard>
-                </Col>
-            </Row>
-            <Row className="moke-create-center-card">
-                <Col>
-                    <MokeCard headerText={"发送的合著邀请函"}>
-                        {
-                            isLoading
-                                ? <MokeLoadingPage />
-                                : <MokeInvitationTemplateBySender
-                                    onCancel={(id) => {
-                                        return props.cancelMySendedInvitation!(id);
-                                    }}
-                                    dataSource={props.sendedInvitations || []}
                                 />
                         }
                     </MokeCard>

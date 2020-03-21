@@ -13,7 +13,9 @@ import {
     IInvitation,
     IArticleInfo,
     IUserInfo,
-    IUser
+    IUser,
+    INotification,
+    INotificationInfo
 } from "moke-model";
 import { ArticleIsPublic } from "moke-enum";
 
@@ -125,6 +127,20 @@ class MokeMapper {
             password: info.password,
             createDate: info.create_date,
             status: info.status,
+        }
+    }
+
+    public mapNotificationInfoToModel(info: INotificationInfo): INotification {
+        return {
+            id: info.message_id.toString(),
+            senderId: info.sender.toString(),
+            receiverId: info.receiver.toString(),
+            senderDisplayName: info.admin_name,
+            receiverDisplayName: info.name,
+            title: info.title,
+            message: info.message,
+            sendedDate: info.sended_date,
+            status: info.has_been_read,
         }
     }
 }

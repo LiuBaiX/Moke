@@ -4,6 +4,7 @@ import ArticleSubTypeService from "./ArticleSubTypeService";
 import ArticleService from "./ArticleService";
 import SubsidiaryService from "./SubsidiaryService";
 import InvitationService from "./InvitationService";
+import NotificationService from "./NotificationService";
 
 export {
     ArticleTypeService,
@@ -12,4 +13,5 @@ export {
     SubsidiaryService,
     UserService,
     ArticleService,
+    NotificationService,
 }

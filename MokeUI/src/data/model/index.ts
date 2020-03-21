@@ -18,6 +18,8 @@ import { IInvitationRequest } from "./IInvitationRequest";
 import { IInvitationResponse } from "./IInvitationResponse";
 import { ISubsidiaryForm } from "./ISubsidiaryForm";
 import { ICommonResponseInfo } from "./ICommonResponseInfo";
+import { INotification } from "./INotification";
+import { INotificationInfo } from "./INotificationInfo";
 
 export {
     IArticleForDisplay,
@@ -40,4 +42,6 @@ export {
     IInvitationResponse,
     ISubsidiaryForm,
     ICommonResponseInfo,
+    INotification,
+    INotificationInfo,
 }

@@ -18,6 +18,7 @@ import {
 import { MokePeoplePicker } from "./peoplepicker";
 import { MokeUpload } from "./upload";
 import { MokeSubsidiaryListTemplate } from "./template/MokeSubsidiaryListTemplate";
+import { MokeNotificationTemplate } from "./template/MokeNotificationTemplate";
 
 export {
     MokeTooltip,
@@ -37,4 +38,5 @@ export {
     MokeSubsidiaryEditor,
     MokeUpload,
     MokeSubsidiaryListTemplate,
+    MokeNotificationTemplate
 }

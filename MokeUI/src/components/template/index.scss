@@ -10,3 +10,16 @@
     height: 26em;
     overflow: auto;
 }
+
+.moke-notification-container {
+    margin: 0.5em 0em;
+
+    .moke-notification-header {
+        display: flex;
+        justify-content: space-between;
+
+        .moke-notification-badge {
+            font-size: 1em;
+        }
+    }
+}

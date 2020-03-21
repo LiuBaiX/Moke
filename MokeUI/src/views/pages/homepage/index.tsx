@@ -1,41 +1,15 @@
-import React from 'react';
-import './index.scss';
-import { connect } from 'react-redux';
-import {
-    Row} from 'react-bootstrap';
+import { HomePageView } from "./HomePageView";
+import { IAppState } from "moke-state";
+import { connect } from "react-redux";
 
-export interface IHomePageOwnProps {
-
-}
-export interface IHomePageMapStateToProps {
-    test?: string
-}
-export interface IHomePageMapDispatchToProps {
-
-}
-type IHomePageProps = IHomePageOwnProps & IHomePageMapStateToProps & IHomePageMapDispatchToProps;
-
-const mapStateToProps = ({ testString }: any) => {
+const mapStateToProps = ({ user }: IAppState) => {
     return {
-        testString
+        username: user.username
     }
 }
 
+const HomePage = connect(mapStateToProps)(HomePageView);
 
-connect(mapStateToProps);
-
-export default class HomePage extends React.Component<IHomePageProps>{
-    constructor(props: IHomePageProps) {
-        super(props);
-        this.state = {
-
-        }
-    }
-    public render(): JSX.Element {
-        return (
-            <Row>
-                this is home.
-            </Row>
-        )
-    }
+export {
+    HomePage
 }

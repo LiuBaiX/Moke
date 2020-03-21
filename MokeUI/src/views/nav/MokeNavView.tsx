@@ -121,15 +121,6 @@ export class MokeNavView extends React.Component<IMokeNavProps, IMokeNavSate>{
                         </ListGroup.Item>
                         <ListGroup.Item action
                             className={"moke-nav-item text-primary"}
-                            variant={this.state.isActive[1] as any}
-                            onClick={() => {
-                                this.whichIsActive(1);
-                                this.props.history.push("/story");
-                            }}>
-                            典故大全
-                        </ListGroup.Item>
-                        <ListGroup.Item action
-                            className={"moke-nav-item text-primary"}
                             variant={this.state.isActive[2] as any}
                             onClick={() => {
                                 this.whichIsActive(2);
@@ -142,9 +133,27 @@ export class MokeNavView extends React.Component<IMokeNavProps, IMokeNavSate>{
                             variant={this.state.isActive[3] as any}
                             onClick={() => {
                                 this.whichIsActive(3);
+                                this.props.history.push("/invitation");
+                            }}>
+                            邀请管理
+                        </ListGroup.Item>
+                        <ListGroup.Item action
+                            className={"moke-nav-item text-primary"}
+                            variant={this.state.isActive[1] as any}
+                            onClick={() => {
+                                this.whichIsActive(1);
+                                this.props.history.push("/notification");
+                            }}>
+                            我的通知
+                        </ListGroup.Item>
+                        <ListGroup.Item action
+                            className={"moke-nav-item text-primary"}
+                            variant={this.state.isActive[4] as any}
+                            onClick={() => {
+                                this.whichIsActive(4);
                                 this.props.history.push("/create");
                             }}>
-                            创作中心
+                            我的作品
                         </ListGroup.Item>
                     </ListGroup>
                 </Row>

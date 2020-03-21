@@ -5,6 +5,7 @@ import { articleTypeReducer } from "./ArticleTypeReducer";
 import { articleReducer } from "./ArticleReducer";
 import { invitationReducer } from "./InvitationReducer";
 import { subsidiaryReducer } from "./SubsidiaryReducer";
+import { notificationReducer } from './NotificationReducer';
 
 const reducers = {
     user: userReducer,
@@ -12,7 +13,8 @@ const reducers = {
     articleTypes: articleTypeReducer,
     articles: articleReducer,
     invitations: invitationReducer,
-    subsidiary: subsidiaryReducer
+    subsidiary: subsidiaryReducer,
+    notification: notificationReducer,
 }
 
 export default combineReducers(reducers);

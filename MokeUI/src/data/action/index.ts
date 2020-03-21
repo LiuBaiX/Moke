@@ -4,6 +4,7 @@ import { IArticleTypeAction } from "./IArticleTypeAction";
 import { IArticleAction } from "./IArticleAction";
 import { IInvitationAction } from "./IInvitationAction";
 import { ISubsidiaryAction } from './ISubsidiaryAction';
+import { INotificationAction } from "./INotificationAction";
 
 export {
     IUserAction,
@@ -12,4 +13,5 @@ export {
     IInvitationAction,
     IArticleTypeAction,
     ISubsidiaryAction,
+    INotificationAction,
 }

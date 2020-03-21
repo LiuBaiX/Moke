@@ -1,6 +1,5 @@
 import React from "react";
 import { Jumbotron, Container, Badge } from "react-bootstrap";
-import { MokeCard } from "moke-components";
 
 export default class Welcome extends React.Component {
     public render = () => {
@@ -19,7 +18,6 @@ export default class Welcome extends React.Component {
                         </p>
                     </Container>
                 </Jumbotron>
-                <MokeCard headerText={"随机推荐"} onRenderBody={this.renderBody} />
             </React.Fragment>
         );
     }

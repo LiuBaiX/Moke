@@ -1,7 +1,9 @@
 import React from "react";
 import { Route, Redirect, Switch } from "react-router";
-import HomePage from "src/views/pages/homepage";
+import { HomePage } from "src/views/pages/homepage";
 import { Article } from "src/views/pages/article";
+import { Notification } from "src/views/pages/notification";
+import { InvitationCenter } from "src/views/pages/invitation";
 import { CreateNewArticle, EditArticle } from "src/views/pages/createcenter/article";
 import Welcome from "../pages/welcome";
 import { connect } from "react-redux";
@@ -9,6 +11,7 @@ import { IAppState } from "moke-state";
 import { ArticleDetails } from "src/views/pages/details";
 import { CreateCenter } from "../pages/createcenter";
 import { SubsidiaryEditor } from "../pages/createcenter/subsidiary";
+import { UserCenter } from "../pages/usercenter";
 
 function renderRouter() {
     const routeConfig = [
@@ -22,8 +25,17 @@ function renderRouter() {
             children: <HomePage />,
         },
         {
+            path: "/notification",
+            children: <Notification />,
+        },
+        {
             path: "/article",
             children: <Article />,
+            exact: true,
+        },
+        {
+            path: "/invitation",
+            children: <InvitationCenter />,
             exact: true,
         },
         {
@@ -50,7 +62,7 @@ function renderRouter() {
         },
         {
             path: "/user",
-            children: <React.Fragment></React.Fragment>
+            children: <UserCenter />
         }
     ];
     return (

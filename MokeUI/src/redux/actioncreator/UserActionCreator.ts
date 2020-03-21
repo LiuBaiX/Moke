@@ -4,12 +4,12 @@ import {
     IErrorAction
 } from "moke-action";
 import { UserService } from "moke-service";
-import { RequestStatus } from "moke-enum";
+import { RequestStatus, ResponseStatusType } from "moke-enum";
 import { loginErrorActionCreator, registerErrorActionCreator } from "./ErrorActionCreator";
 import { ThunkAction } from "redux-thunk";
 import { IAppState } from "moke-state";
 import { SimpleSession } from "moke-util";
-import { IUser } from "moke-model";
+import { IUser, ICommonResponseInfo } from "moke-model";
 import { mokeMapper } from "moke-mapper";
 
 const loginActionCreator = (username: string, uid: number): IUserAction => {
@@ -23,6 +23,22 @@ const loginActionCreator = (username: string, uid: number): IUserAction => {
 const logoutActionCreator = (): IUserAction => {
     return {
         type: constants.COMMON_LOGOUT,
+    }
+}
+
+const setUserInformation = (user: IUser): IUserAction => {
+    return {
+        type: constants.USER_INFORMATION_SET,
+        password: user.password,
+        createDate: user.createDate,
+        status: user.status
+    };
+}
+
+const setUserPassword = (password: string): IUserAction => {
+    return {
+        type: constants.USER_PASSWORD_SET,
+        password,
     }
 }
 
@@ -79,9 +95,44 @@ const fetchUserDataByFuzzyName = (fuzzyName: string): Promise<IUser[]> => {
     });
 }
 
+const fetchUserInformationById = (id: string): ThunkAction<
+    Promise<IUser>,
+    IAppState,
+    null,
+    IUserAction
+> => {
+    return (dispatch) => {
+        return UserService.getUserById(id).then((data) => {
+            return mokeMapper.mapUserInfoToModel(data);
+        }).then((data) => {
+            dispatch(setUserInformation(data));
+            return data;
+        });
+    }
+}
+
+const updatePassword = (id: string, newPassword: string, oldPassword: string): ThunkAction<
+    Promise<ICommonResponseInfo>,
+    IAppState,
+    null,
+    IUserAction
+> => {
+    return (dispatch) => {
+        return UserService.updatePassword(id, newPassword, oldPassword)
+            .then((data) => {
+                if (data.status === ResponseStatusType.Success) {
+                    dispatch(setUserPassword(newPassword));
+                }
+                return data;
+            });
+    }
+}
+
 export default {
     login,
     logout,
     register,
     fetchUserDataByFuzzyName,
+    fetchUserInformationById,
+    updatePassword
 }

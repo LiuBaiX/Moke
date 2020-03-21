@@ -4,6 +4,7 @@ import { IArticleTypeState } from "./IArticleTypeState";
 import { IArticleState } from "./IArticleState";
 import { IInvitationState } from "./IInvitationState";
 import { ISubsidiaryState } from "./ISubsidiaryState";
+import { INotificationState } from "./INotificationState";
 
 interface IAppState {
     error: IErrorState;
@@ -12,6 +13,7 @@ interface IAppState {
     articles: IArticleState;
     invitations: IInvitationState;
     subsidiary: ISubsidiaryState;
+    notification: INotificationState;
 }
 
 export {
@@ -22,4 +24,5 @@ export {
     IArticleState,
     IInvitationState,
     ISubsidiaryState,
+    INotificationState,
 };

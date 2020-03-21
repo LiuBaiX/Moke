@@ -7,6 +7,14 @@ export default class MokeAPI {
         return this.baseURL + `/user/${fuzzyName}`;
     }
 
+    public getUserById = (id: string) => {
+        return this.baseURL + `/user/${id}/information`;
+    }
+
+    public updatePassword = (id: string, newPassword: string) => {
+        return this.baseURL + `/user/${id}/password/${newPassword}`;
+    }
+
     public login = () => {
         return this.baseURL + "/user/login";
     }
@@ -89,5 +97,13 @@ export default class MokeAPI {
 
     public sendInvitation = (from: string, ref: string) => {
         return this.baseURL + `/invitation/send/${from}/ref/${ref}`;
+    }
+
+    public getNotificationsByReceiver = (receiverId: string) => {
+        return this.baseURL + `/notification/receiver/${receiverId}`;
+    }
+
+    public setNotificationHabBeenRead = (notificationId: string) => {
+        return this.baseURL + `/notification/read/${notificationId}`;
     }
 }

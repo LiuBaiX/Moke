@@ -169,6 +169,9 @@ export class MokeInvitationTemplateBySender extends React.Component<IMokeInvitat
             case InvitationStatusType.Sustaining:
                 status = <Badge className="moke-invitation-modal-badge-large" variant="warning">持续中</Badge>;
                 break;
+            case InvitationStatusType.Finished:
+                status = <Badge className="moke-invitation-modal-badge-large" variant="secondary">已完成</Badge>;
+                break;
             default:
                 status = <span className="text-muted">未知</span>;
         };

@@ -1,6 +1,6 @@
 import MokeSender from '../../util/MokeSender';
 import MokeAPI from '../url';
-import { IUserInfo } from 'moke-model';
+import { IUserInfo, ICommonResponseInfo } from 'moke-model';
 
 const mokeSender = new MokeSender();
 const mokeAPI = new MokeAPI();
@@ -20,8 +20,20 @@ function getUserByFuzzyName(fuzzyName: string): Promise<IUserInfo[]> {
     return mokeSender.send(url, "GET");
 }
 
+function getUserById(id: string): Promise<IUserInfo> {
+    const url = mokeAPI.getUserById(id);
+    return mokeSender.send(url, "POST");
+}
+
+function updatePassword(id: string, newPassword: string, oldPassword: string): Promise<ICommonResponseInfo> {
+    const url = mokeAPI.updatePassword(id, newPassword);
+    return mokeSender.send(url, "POST", { password: oldPassword });
+}
+
 export default {
     login,
     register,
-    getUserByFuzzyName
+    getUserByFuzzyName,
+    getUserById,
+    updatePassword
 }
