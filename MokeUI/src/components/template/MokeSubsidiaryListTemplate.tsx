@@ -167,10 +167,8 @@ export class MokeSubsidiaryListTemplate extends React.Component<IMokeSubsidiaryL
                             </tr>
                             <tr>
                                 <th>类型</th>
-                                <td>
-                                    <Badge className="moke-invitation-modal-badge-large" variant="info">
-                                        {type}
-                                    </Badge>
+                                <td className="moke-subsidiary-modal-badge-large">
+                                    <Badge variant="info">{type}</Badge>
                                 </td>
                             </tr>
                         </Table>

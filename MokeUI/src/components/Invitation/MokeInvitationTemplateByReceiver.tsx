@@ -272,7 +272,9 @@ export class MokeInvitationTemplateByReceiver extends React.Component<IMokeInvit
                             </tr>
                             <tr>
                                 <th>状态</th>
-                                <td>{status}</td>
+                                <td className="moke-invitation-modal-badge-large">
+                                    {status}
+                                </td>
                             </tr>
                         </Table>
                     </Col>

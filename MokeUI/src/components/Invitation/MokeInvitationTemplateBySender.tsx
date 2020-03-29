@@ -161,16 +161,16 @@ export class MokeInvitationTemplateBySender extends React.Component<IMokeInvitat
         let status;
         switch (data?.status) {
             case InvitationStatusType.Accept:
-                status = <Badge className="moke-invitation-modal-badge-large" variant="success">已同意</Badge>;
+                status = <Badge variant="success">已同意</Badge>;
                 break;
             case InvitationStatusType.Reject:
-                status = <Badge className="moke-invitation-modal-badge-large" variant="danger">已拒绝</Badge>;
+                status = <Badge variant="danger">已拒绝</Badge>;
                 break;
             case InvitationStatusType.Sustaining:
-                status = <Badge className="moke-invitation-modal-badge-large" variant="warning">持续中</Badge>;
+                status = <Badge variant="warning">持续中</Badge>;
                 break;
             case InvitationStatusType.Finished:
-                status = <Badge className="moke-invitation-modal-badge-large" variant="secondary">已完成</Badge>;
+                status = <Badge variant="secondary">已完成</Badge>;
                 break;
             default:
                 status = <span className="text-muted">未知</span>;
@@ -194,7 +194,9 @@ export class MokeInvitationTemplateBySender extends React.Component<IMokeInvitat
                             </tr>
                             <tr>
                                 <th>状态</th>
-                                <td>{status}</td>
+                                <td className="moke-invitation-modal-badge-large">
+                                    {status}
+                                </td>
                             </tr>
                         </Table>
                     </Col>
