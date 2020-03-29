@@ -49,7 +49,7 @@ const LogoutButton: React.FunctionComponent<{ logout: () => void }> = (props) =>
     return <Button variant="outline-danger"
         onClick={() => {
             props.logout();
-            window.location.replace("/home");
+            window.location.replace("/client");
         }}>注销</Button>;
 }
 

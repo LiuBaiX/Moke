@@ -1,6 +1,7 @@
 import { MokeSender } from 'moke-util';
 import MokeAPI from '../url';
 import { IArticleForm, IArticleForDisplayInfo, IArticleInfo, IUpdateArticleReturnsInfo, IInvitationResponse } from 'moke-model';
+import { ArticleStatusType } from 'moke-enum';
 
 const mokeSender = new MokeSender();
 const mokeAPI = new MokeAPI();
@@ -44,6 +45,18 @@ const getMyArticles = (uid: string, page: number): Promise<IArticleForDisplayInf
     })
 }
 
+const getAllBanedArticles = (): Promise<IArticleForDisplayInfo[]> => {
+    const url = mokeAPI.getAllArticles();
+    return mokeSender.send(url, "GET");
+}
+
+const setArticleStatusAccept = (id: string, adminId: string): Promise<IArticleForDisplayInfo> => {
+    const url = mokeAPI.setArticleStatus(id);
+    return mokeSender.send(url, "POST", {
+        admin_id: adminId
+    });
+}
+
 export default {
     addArticle,
     getPublicArticles,
@@ -52,4 +65,6 @@ export default {
     editArticle,
     getDisplayArticleById,
     deleteArticle,
+    getAllBanedArticles,
+    setArticleStatusAccept
 }

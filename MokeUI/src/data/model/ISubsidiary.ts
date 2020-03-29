@@ -1,4 +1,4 @@
-import { SubsidiaryType } from "moke-enum";
+import { SubsidiaryType, UserStatusType, SubsidiaryStatusType } from "moke-enum";
 
 export interface ISubsidiary {
     subsidiaryId: string;
@@ -10,4 +10,5 @@ export interface ISubsidiary {
     content?: string;
     createDate: string;
     type: SubsidiaryType;
+    status?: SubsidiaryStatusType;
 }

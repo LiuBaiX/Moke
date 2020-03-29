@@ -2,7 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
-import { MokeNav } from './client/nav';
+import { MokeNav } from './client';
+import { MokeAdminNav } from "./admin";
 import { AdminRouter, ClientRouter } from './router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
@@ -40,7 +41,7 @@ function App() {
               <Col md={3} sm={0} className={"moke-app-nav fixed-top"}>
                 <aside>
                   <nav>
-                    
+                    <MokeAdminNav />
                   </nav>
                 </aside>
               </Col>

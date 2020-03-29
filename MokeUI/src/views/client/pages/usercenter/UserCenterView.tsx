@@ -181,8 +181,6 @@ export class UserCenterView extends React.Component<IUserCenterViewProps, IUserC
                 return <Badge style={{ fontSize: "1em" }} variant="success">正常</Badge>;
             case UserStatusType.Baned:
                 return <Badge style={{ fontSize: "1em" }} variant="danger" >封禁</Badge>;
-            case UserStatusType.Confined:
-                return <Badge style={{ fontSize: "1em" }} variant="warning" >受限制</Badge>;
         }
     }
 }

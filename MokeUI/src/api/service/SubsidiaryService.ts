@@ -40,9 +40,23 @@ const getSubsidiariesByUserId = (id: string): Promise<ISubsidiaryInfo[]> => {
     return mokeSender.send(url, "GET");
 }
 
+const getAllBanedSubsidiaries = (): Promise<ISubsidiaryInfo[]> => {
+    const url = mokeAPI.getAllBanedSubsidiaries();
+    return mokeSender.send(url, "GET");
+}
+
+const setSubsidiaryStatusAccept = (id: string, adminId: string): Promise<ISubsidiaryInfo> => {
+    const url = mokeAPI.setSubsidiaryStatus(id);
+    return mokeSender.send(url, "POST", {
+        admin_id: adminId
+    });
+}
+
 export default {
     getSubsidiariesByArticleId,
     addSubsidiary,
     deleteSubsidiary,
     getSubsidiariesByUserId,
+    getAllBanedSubsidiaries,
+    setSubsidiaryStatusAccept,
 }

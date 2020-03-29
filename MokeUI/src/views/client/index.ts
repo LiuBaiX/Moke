@@ -8,6 +8,7 @@ import { ArticleDetails } from "./pages/details";
 import { CreateCenter } from "./pages/createcenter";
 import { SubsidiaryEditor } from "./pages/createcenter/subsidiary";
 import { UserCenter } from "./pages/usercenter";
+import {MokeNav} from "./nav";
 
 export {
     HomePage,
@@ -19,5 +20,6 @@ export {
     ArticleDetails,
     CreateCenter,
     SubsidiaryEditor,
-    UserCenter
+    UserCenter,
+    MokeNav
 }

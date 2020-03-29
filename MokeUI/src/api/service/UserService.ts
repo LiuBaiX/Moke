@@ -1,6 +1,7 @@
 import MokeSender from '../../util/MokeSender';
 import MokeAPI from '../url';
 import { IUserInfo, ICommonResponseInfo } from 'moke-model';
+import { UserStatusType } from 'moke-enum';
 
 const mokeSender = new MokeSender();
 const mokeAPI = new MokeAPI();
@@ -30,10 +31,24 @@ function updatePassword(id: string, newPassword: string, oldPassword: string): P
     return mokeSender.send(url, "POST", { password: oldPassword });
 }
 
+function getAllUsers(): Promise<IUserInfo[]> {
+    const url = mokeAPI.getAllUsers();
+    return mokeSender.send(url, "GET");
+}
+
+function setUserStatus(id: string, status: UserStatusType, adminId: string): Promise<ICommonResponseInfo> {
+    const url = mokeAPI.setUserStatus(id, status);
+    return mokeSender.send(url, "POST", {
+        admin_id: adminId
+    });
+}
+
 export default {
     login,
     register,
     getUserByFuzzyName,
     getUserById,
-    updatePassword
+    updatePassword,
+    getAllUsers,
+    setUserStatus,
 }

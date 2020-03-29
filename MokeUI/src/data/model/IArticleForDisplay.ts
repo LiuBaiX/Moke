@@ -1,3 +1,5 @@
+import { ArticleStatusType } from "moke-enum";
+
 export interface IArticleForDisplay {
     articleId: number;
     name: string;
@@ -9,4 +11,5 @@ export interface IArticleForDisplay {
     articleTypeDisplayName: string;
     articleSubTypeDisplayName?: string;
     content?: string;
+    status?: ArticleStatusType;
 }

@@ -15,7 +15,9 @@ import {
     IUserInfo,
     IUser,
     INotification,
-    INotificationInfo
+    INotificationInfo,
+    IAdminInfo,
+    IAdmin
 } from "moke-model";
 import { ArticleIsPublic } from "moke-enum";
 
@@ -141,6 +143,13 @@ class MokeMapper {
             message: info.message,
             sendedDate: info.sended_date,
             status: info.has_been_read,
+        }
+    }
+
+    public mapAdminInfoToModel(info: IAdminInfo): IAdmin {
+        return {
+            id: info.admin_id.toString(),
+            username: info.admin_name
         }
     }
 }

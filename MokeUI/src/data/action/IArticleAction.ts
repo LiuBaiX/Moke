@@ -4,4 +4,5 @@ export interface IArticleAction {
     type: string;
     articles?: IArticleForDisplay[];
     page?: number;
+    id?: string;
 }

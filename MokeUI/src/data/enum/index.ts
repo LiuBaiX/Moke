@@ -52,12 +52,21 @@ enum InvitationStatusType {
 enum UserStatusType {
     Normal = 0,
     Baned = 1,
-    Confined = 2,
 }
 
 enum NotificationStatusType {
     NotRead = 0,
     Read = 1
+}
+
+enum SubsidiaryStatusType {
+    Normal = 1,
+    Baned = 0,
+}
+
+enum ArticleStatusType {
+    Normal = 1,
+    Baned = 0,
 }
 
 export {
@@ -72,4 +81,6 @@ export {
     AudioMIMEType,
     VideoMIMEType,
     NotificationStatusType,
+    SubsidiaryStatusType,
+    ArticleStatusType
 }

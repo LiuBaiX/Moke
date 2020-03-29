@@ -20,8 +20,12 @@ import { ISubsidiaryForm } from "./ISubsidiaryForm";
 import { ICommonResponseInfo } from "./ICommonResponseInfo";
 import { INotification } from "./INotification";
 import { INotificationInfo } from "./INotificationInfo";
+import { IAdmin } from "./IAdmin";
+import { IAdminInfo } from "./IAdminInfo";
 
 export {
+    IAdmin,
+    IAdminInfo,
     IArticleForDisplay,
     IArticleSubType,
     IArticleType,

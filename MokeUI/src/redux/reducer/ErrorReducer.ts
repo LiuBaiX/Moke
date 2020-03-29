@@ -6,7 +6,7 @@ const defaultState: IErrorState = {
     message: "",
 };
 
-const errorReducer = (state: IErrorState = defaultState, action: IErrorAction) => {
+const errorReducer = (state = defaultState, action: IErrorAction) => {
     switch (action.type) {
         case constants.ERROR_LOGIN:
             return {

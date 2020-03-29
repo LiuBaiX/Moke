@@ -1,3 +1,5 @@
+import { ArticleStatusType } from "moke-enum";
+
 export interface IArticle {
     articleId?: number;
     isPublic: boolean;
@@ -6,4 +8,5 @@ export interface IArticle {
     articleType: number;
     articleSubType?: number;
     content?: string;
+    status?: ArticleStatusType;
 }

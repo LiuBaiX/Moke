@@ -1,4 +1,4 @@
-import { InvitationStatusType, SubsidiaryType } from "moke-enum";
+import { InvitationStatusType, SubsidiaryType, UserStatusType, ArticleStatusType, SubsidiaryStatusType } from "moke-enum";
 
 export default class MokeAPI {
     public baseURL = "http://localhost";
@@ -105,5 +105,33 @@ export default class MokeAPI {
 
     public setNotificationHabBeenRead = (notificationId: string) => {
         return this.baseURL + `/notification/read/${notificationId}`;
+    }
+
+    public adminLogin = () => {
+        return this.baseURL + "/admin/login";
+    }
+
+    public getAllUsers = () => {
+        return this.baseURL + "/user";
+    }
+
+    public setUserStatus = (id: string, status: UserStatusType) => {
+        return this.baseURL + `/user/${id}/status/${status}`;
+    }
+
+    public getAllBanedSubsidiaries = () => {
+        return this.baseURL + "/subsidiary/ban/all";
+    }
+
+    public setSubsidiaryStatus = (id: string) => {
+        return this.baseURL + `/subsidiary/accept/${id}`;
+    }
+
+    public getAllArticles = () => {
+        return this.baseURL + "/article/ban/all";
+    }
+
+    public setArticleStatus = (id: string) => {
+        return this.baseURL + `/article/accept/${id}`;
     }
 }

@@ -5,9 +5,11 @@ import ArticleService from "./ArticleService";
 import SubsidiaryService from "./SubsidiaryService";
 import InvitationService from "./InvitationService";
 import NotificationService from "./NotificationService";
+import AdminService from "./AdminService";
 
 export {
     ArticleTypeService,
+    AdminService,
     ArticleSubTypeService,
     InvitationService,
     SubsidiaryService,
