@@ -5,7 +5,7 @@ export interface IArticleInfo {
     title: string;
     author: number;
     type: number;
-    subType: number;
+    sub_type: number;
     content?: string;
     description?: string;
     isPublic: ArticleIsPublic;

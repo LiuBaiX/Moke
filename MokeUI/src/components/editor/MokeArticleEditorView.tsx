@@ -59,7 +59,7 @@ const SubmitButton: React.FunctionComponent<ISubmitButtonProps> = (props) => {
                 });
             }}>
             发布
-      </Button>
+        </Button>
     );
 }
 
@@ -205,6 +205,7 @@ export class MokeArticleEditorView extends React.Component<IMokeArticleEditorPro
                                         ? <option value={-1}>该分类下无子分类</option>
                                         : this.state.articleSubTypeList?.map((item: IArticleSubType, index) => {
                                             return <option
+                                                selected={this.props.dataSource?.articleSubType === item.tid}
                                                 value={item.tid}
                                                 key={index}>
                                                 {item.displayName}
@@ -227,18 +228,6 @@ export class MokeArticleEditorView extends React.Component<IMokeArticleEditorPro
                     <Form.Row>
                         <Form.Group as={Col}>
                             <MokeFormLabel text={"开始创作"} />
-                            <Form.Check inline
-                                id="moke-new-article-switch-template"
-                                type="switch"
-                                className="float-right"
-                                label="打开智能提示模板"
-                                checked={this.state.displaySmartTips}
-                                onChange={() => {
-                                    this.setState({
-                                        displaySmartTips: !this.state.displaySmartTips
-                                    });
-                                }}
-                            />
                             <Form.Row>
                                 <Form.Group as={Col}>
                                     <Form.Control
@@ -248,11 +237,6 @@ export class MokeArticleEditorView extends React.Component<IMokeArticleEditorPro
                                         ref={this.contentFormControl}
                                     />
                                 </Form.Group>
-                                {
-                                    this.state.displaySmartTips
-                                        ? this.renderSmartTips()
-                                        : null
-                                }
                             </Form.Row>
                         </Form.Group>
                     </Form.Row>
@@ -266,17 +250,6 @@ export class MokeArticleEditorView extends React.Component<IMokeArticleEditorPro
                     </ButtonGroup>
                 </div>
             </React.Fragment>
-        );
-    }
-
-    private renderSmartTips = (): JSX.Element => {
-        return (
-            <Form.Group as={Col} md={4}>
-                <Form.Control readOnly
-                    as={"textarea"}
-                    rows={9}
-                    value={""} />
-            </Form.Group>
         );
     }
 

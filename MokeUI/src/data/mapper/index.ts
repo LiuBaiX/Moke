@@ -57,7 +57,7 @@ class MokeMapper {
             name: info.title,
             description: info.description,
             articleType: info.type,
-            articleSubType: info.subType,
+            articleSubType: info.sub_type,
             content: info.content,
         };
     }
